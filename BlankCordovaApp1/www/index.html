@@ -4,14 +4,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css">
     <link rel="stylesheet" type="text/css" href="slick/slick.css">
-    <link rel="stylesheet" type="text/css" href="slick/slick-theme.css">    
+    <link rel="stylesheet" type="text/css" href="slick/slick-theme.css">
     <script src="scripts/jquery-1.11.3.min.js"></script>
     <script src="scripts/jquery.mobile-1.4.5.min.js"></script>
     <script src="slick/slick.min.js"></script>
-    <style type="text/css">
 
+    <style type="text/css">
         .slider {
-            width: 90%;            
+            width: 90%;
             margin: 2px auto;
         }
 
@@ -32,15 +32,14 @@
 </head>
 <body>
 
-    <!-- Start of first page -->
     <div data-role="page" id="main">
-
-        <div data-role="header"  data-position="fixed">
+        <!-- Start of main page -->
+        <div data-role="header" data-position="fixed">
             <h1>有料餐點</h1>
             <a class="ui-btn ui-corner-all  ui-icon-mail ui-btn-icon-right" href="#">訊息</a>
-            <a class="ui-btn ui-corner-all  ui-icon-user ui-btn-icon-left" href="#">設定</a>
+            <a class="ui-btn ui-corner-all  ui-icon-user ui-btn-icon-left" data-transition="slide" id="member">會員</a>
         </div><!-- /header -->
-
+        <!-- 輪播 -->
         <div role="main" class="ui-content">
             <section class="regular slider">
                 <div>
@@ -63,13 +62,33 @@
                 </div>
             </section>
         </div><!-- /content -->
+
         <script type="text/javascript">
             $(document).on('ready', function () {
+                var logined = window.localStorage;
+
+                if (logined.getItem("logined") == null)
+                    $("#member").text("登入")
+
+                else {
+                    $("#member").text("會員")
+                    //        $("#sex") = session.sex;
+                }
+
+
+
+
+
+
+
+
+
                 $(".regular").slick({
                     dots: true,
                     infinite: true,
                     slidesToShow: 1,
-                    slidesToScroll: 1
+                    slidesToScroll: 1,
+                    autoplay: true
                 });
                 $(".center").slick({
                     dots: true,
@@ -83,10 +102,188 @@
                     infinite: true,
                     variableWidth: true
                 });
+
+                $("#member").click(function () {
+
+                    if (logined.getItem("logined") == null)
+                        location.href = '#login';
+                    else
+                        location.href = "#my";
+                });
+
+                $("#loginbtn").click(function () {
+
+                    var session = {};
+                    var email = $('#email').val();
+                    var pwd = $('#pwd').val();
+                    var a = {
+                        "mode": "login",
+                        "login": [
+                                    {
+                                        "email": email,
+                                        "pwd": pwd
+                                    }
+                        ]
+                    }
+                    $.ajax({
+                        url: "http://localhost/Test/mobile.ashx",
+                        type: "POST",
+                        dataType: "json",
+                        contentType: 'application/json; charset=utf-8',
+                        data: JSON.stringify(a),
+                        success: function (paa) {
+                            if (paa.success = true) {
+                                session = paa;
+                                session.islogined = true;
+                                logined.setItem("name", session.name);
+                                logined.setItem('sex', session.sex);
+                                logined.setItem('money', session.money);
+                                logined.setItem("logined", 'true');
+                                $("#member").text("會員");
+                                location.href = '#main';
+
+
+                                console.dir(logined);
+
+
+                            }
+                        },
+                        error: function () { alert('失敗') }
+                    });
+
+                    $(document).on("pagecreate", "#my", function () {
+                        alert("paa")
+                        $("sex").text("apap")
+
+                    });
+
+
+
+
+
+                });
+
+                $("#test").click(function () {
+
+                    console.dir(logined);
+                    console.dir(logined['name']);
+                    console.dir($('#name11'));
+                    $('#name11').val(logined['name'])
+
+                });
+
+            });
+            $("#my").live("paa", function () {
+                alert($("#name").text);
             });
         </script>
 
-        <div data-role="footer"  data-position="fixed">
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar" data-mini="true">
+                <ul>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-home ui-btn-icon-top ui-btn-active ui-state-persist" href="#main">首頁</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-bullets ui-btn-icon-top" href="#">點餐</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-heart ui-btn-icon-top" href="#">優惠</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-location ui-btn-icon-top" href="#">門市</a>
+                    </li>
+                </ul>
+            </div>
+        </div><!-- /footer -->
+    </div><!-- End of main page -->
+    <!-- Start of second page -->
+    <div data-role="page" id="order">
+
+        <div data-role="header">
+            <h1>Bar</h1>
+        </div><!-- /header -->
+
+        <div role="main" class="ui-content">
+            <p><a href="#" data-role="button" data-rel="back" data-mini="true">Back to foo</a></p>
+        </div><!-- /content -->
+
+        <div data-role="footer">
+            <h4>Page Footer</h4>
+        </div><!-- /footer -->
+    </div><!-- End of second page -->
+    <!-- Start of login page -->
+    <div data-role="page" id="login">
+        <div data-role="header">
+            <a data-rel="back" data-role="button" data-icon="arrow-l">上一頁</a>
+            <h1>會員登入</h1>
+            <a href="#registered" data-role="button" data-icon="plus" data-transition="slide">註冊</a>
+        </div>
+        <div data-role="content">
+            <form method="post" action="#">
+                <div>
+                    <label for="email">信箱：</label><input type="email" name="email" id="email" value="gg@inin.der">
+                </div>
+                <div>
+                    <label for="pwd">密碼：</label><input type="password" name="pwd" id="pwd" value="c8763">
+                </div>
+                <div>
+                    <a href="#" data-role="button" data-inline="true" id="loginbtn">登入</a>
+
+                </div>
+                <label id="lbl">gg</label>
+            </form>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar" data-mini="true">
+                <ul>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-home ui-btn-icon-top " href="#">首頁</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-bullets ui-btn-icon-top" href="#">點餐</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-heart ui-btn-icon-top" href="#">優惠</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-location ui-btn-icon-top" href="#">門市</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>><!-- End login page -->
+    <!-- Start of registered page -->
+    <div data-role="page" id="registered">
+        <div data-role="header">
+            <a data-rel="back" data-role="button" data-icon="arrow-l">上一頁</a>
+            <h1>會員註冊</h1>
+        </div>
+        <div class="ui-content">
+            <form method="post" action="#">
+                <div>
+                    <label for="name">姓名：</label><input type="text" name="name" id="name">
+                </div>
+                <div>
+                    <label for="email">信箱：</label><input type="email" name="email" id="email">
+                </div>
+                <div>
+                    <label for="pwd">密碼：</label><input type="password" name="pwd" id="pwd">
+                </div>
+                <div>
+                    性別：
+                    <label for="male"><input id="male" type="radio" name="sex" checked />男</label>
+                    <label for="female"><input id="female" type="radio" name="sex" />女</label>
+                </div>
+                <div>
+                    <label for="date">生日：</label><input type="date" id="date">
+                </div>
+                <div>
+                    <a href="#main" data-role="button" data-inline="true">確認</a>
+                </div>
+            </form>
+        </div>
+        <div data-role="footer" data-position="fixed">
             <div data-role="navbar" data-mini="true">
                 <ul>
                     <li>
@@ -102,23 +299,91 @@
                         <a class="ui-btn ui-corner-all  ui-icon-location ui-btn-icon-top" href="#">門市</a>
                     </li>
                 </ul>
-            </div>                        
-        </div><!-- /footer -->
-    </div><!-- /page -->
-    <!-- Start of second page -->
-    <div data-role="page" id="order">
+            </div>
+        </div>
+    </div><!-- End of registered page -->
+    <!-- Start of my page -->
+    <div data-role="page" id="my">
+        <div data-role="header" data-position="fixed">
+            <a data-rel="back" data-role="button" data-icon="arrow-l">上一頁</a>
+            <h1>會員資料</h1>
+            <a href="#deposit" data-role="button" data-icon="star" data-transition="slide">儲值</a>
+            <a href="#deposit" data-role="button" data-icon="star" data-transition="slide" id="test">XXXX</a>
+        </div>
+        <div data-role="content">
+            <div>
+                姓名：<input type="text" name="name" id="name11" value="GANNNNNN">
+            </div>
+            <div>
+                信箱：<input type="email" name="email" id="email" readonly="readonly">
+            </div>
+            <div>
+                性別：<input type="text" id="sex" readonly="readonly">
+            </div>
+            <div>
+                生日：<input type="text" id="date" readonly="readonly">
+            </div>
+            <div>
+                餘額：<input type="text" name="balance " id="balance " readonly="readonly">
+            </div>
 
+            <div>
+                <a href="#change" data-role="button" data-inline="true">修改</a>
+                <a href="#main" data-role="button" data-inline="true">登出</a>
+            </div>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar" data-mini="true">
+                <ul>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-home ui-btn-icon-top" href="#main">首頁</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-bullets ui-btn-icon-top" href="#order">點餐</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-heart ui-btn-icon-top" href="#offer">優惠</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-location ui-btn-icon-top" href="#stores">門市</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div><!-- End of my page -->
+    <!-- Start of edit page -->
+    <div data-role="page" id="edit">
         <div data-role="header">
-            <h1>Bar</h1>
-        </div><!-- /header -->
+            <a data-role="button" data-rel="back" data-icon="arrow-l">上一頁</a>
+            <h1>會員資料修改</h1>
+            <a href="#main" data-role="button" data-icon="home">首頁</a>
+        </div>
+        <div data-role="content">
+            <div>
+                <label for="name">姓名：</label><input type="text" name="name" id="name">
+            </div>
+            <div>
+                <label for="email">信箱：</label><input type="email" name="email" id="email">
+            </div>
+            <div>
+                <label for="pwd">密碼：</label><input type="password" name="pwd" id="pwd">
+            </div>
+            <div>
+                性別：
+                <label for="male"><input id="male" type="radio" name="sex" checked />男</label>
+                <label for="female"><input id="female" type="radio" name="sex" />女</label>
+            </div>
+            <div>
+                <label for="date">生日：</label><input type="date" id="date">
+            </div>
+            <div>
+                <a href="#main" data-role="button" data-inline="true">確定</a>
+            </div>
+        </div>
+        <div data-role="footer" data-position="fixed">
 
-        <div role="main" class="ui-content">            
-            <p><a href="#foo">Back to foo</a></p>
-        </div><!-- /content -->
+        </div>
+    </div><!-- End of edit page -->
 
-        <div data-role="footer">
-            <h4>Page Footer</h4>
-        </div><!-- /footer -->
-    </div><!-- /page -->
 </body>
 </html>
