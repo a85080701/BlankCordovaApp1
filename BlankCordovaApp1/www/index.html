@@ -66,6 +66,7 @@
         <script type="text/javascript">
             $(document).on('ready', function () {
                 var logined = window.localStorage;
+                alert($('#name11').val())
 
                 if (logined.getItem("logined") == null)
                     $("#member").text("登入")
@@ -173,9 +174,9 @@
                 });
 
             });
-            $("#my").live("paa", function () {
-                alert($("#name").text);
-            });
+            //$("#my").live("paa", function () {
+            //    alert($("#name").text);
+            //});
         </script>
 
         <div data-role="footer" data-position="fixed">
