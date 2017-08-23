@@ -72,15 +72,7 @@
 
                 else {
                     $("#member").text("會員")
-                    //        $("#sex") = session.sex;
                 }
-
-
-
-
-
-
-
 
 
                 $(".regular").slick({
@@ -108,7 +100,20 @@
                     if (logined.getItem("logined") == null)
                         location.href = '#login';
                     else
-                        location.href = "/info.html";
+                        location.href = "#my";
+                    $('#infoname').val(logined['name']);
+                    $('#infosex').val(logined['sex']);
+                    $("#infodate").val(logined['birthday']);
+                    $("#infoemail").val(logined['email']);
+                    $('#info')
+                    
+
+                        
+                });
+
+                $("#logout").click(function () {
+                    logined.clear();
+                    $("#member").text("登入")
                 });
 
                 $("#loginbtn").click(function () {
@@ -138,12 +143,13 @@
                                 logined.setItem("name", session.name);
                                 logined.setItem('sex', session.sex);
                                 logined.setItem('money', session.money);
-                                logined.setItem("logined", 'true');
+                                logined.setItem('birthday', session.birthday);
+                                logined .setItem("logined", 'true');
                                 $("#member").text("會員");
                                 location.href = '#main';
 
 
-                                console.dir(logined);
+                                console.dir(paa);
 
 
                             }
@@ -151,11 +157,6 @@
                         error: function () { alert('失敗') }
                     });
 
-                    $(document).on("pagecreate", "#my", function () {
-                        alert("paa")
-                        $("sex").text("apap")
-
-                    });
 
 
 
@@ -163,14 +164,6 @@
 
                 });
 
-                $("#test").click(function () {
-
-                    console.dir(logined);
-                    console.dir(logined['name']);
-                    console.dir($('#name11'));
-                    $('#name11').val(logined['name'])
-
-                });
 
             });
             //$("#my").live("paa", function () {
@@ -185,7 +178,7 @@
                         <a class="ui-btn ui-corner-all  ui-icon-home ui-btn-icon-top ui-btn-active ui-state-persist" href="#main">首頁</a>
                     </li>
                     <li>
-                        <a class="ui-btn ui-corner-all  ui-icon-bullets ui-btn-icon-top" href="#">點餐</a>
+                        <a class="ui-2 btn ui-corner-all  ui-icon-bullets ui-btn-icon-top" href="#">點餐</a>
                     </li>
                     <li>
                         <a class="ui-btn ui-corner-all  ui-icon-heart ui-btn-icon-top" href="#">優惠</a>
@@ -308,28 +301,27 @@
             <a data-rel="back" data-role="button" data-icon="arrow-l">上一頁</a>
             <h1>會員資料</h1>
             <a href="#deposit" data-role="button" data-icon="star" data-transition="slide">儲值</a>
-            <a href="#deposit" data-role="button" data-icon="star" data-transition="slide" id="test">XXXX</a>
         </div>
         <div data-role="content">
             <div>
-                姓名：<input type="text" name="name" id="name11" value="GANNNNNN">
+                姓名：<input type="text" id="infoname" readonly="readonly">
             </div>
             <div>
-                信箱：<input type="email" name="email" id="email" readonly="readonly">
+                信箱：<input type="email" id="infoemail" readonly="readonly">
             </div>
             <div>
-                性別：<input type="text" id="sex" readonly="readonly">
+                性別：<input type="text" id="infosex" readonly="readonly">
             </div>
             <div>
-                生日：<input type="text" id="date" readonly="readonly">
+                生日：<input type="date" id="infodate" >
             </div>
             <div>
-                餘額：<input type="text" name="balance " id="balance " readonly="readonly">
+                餘額：<input type="text" id="infobalance" readonly="readonly">
             </div>
 
             <div>
                 <a href="#change" data-role="button" data-inline="true">修改</a>
-                <a href="#main" data-role="button" data-inline="true">登出</a>
+                <a href="#main" data-role="button" data-inline="true" id="logout">登出</a>
             </div>
         </div>
         <div data-role="footer" data-position="fixed">
