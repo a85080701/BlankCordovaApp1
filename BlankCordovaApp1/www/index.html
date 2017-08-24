@@ -885,7 +885,7 @@
                                 data: poststore,
                                 dataType: "json",
                                 contentType: "application/json; charset=utf-8",
-                                success: function (data) {
+                                success: function (data) {                                                                                                               
                                     var latlng = new google.maps.LatLng(data.lat, data.lng);
                                     var mapOptions = {
                                         zoom: 16, //初始放大倍數
@@ -898,8 +898,9 @@
                                         position: latlng,
                                         map: map,
                                         title: data.name
-                                    });                                                                                                     
-                                },                             
+                                    });                                       
+                                                               
+                                },                              
                                 error: function (data) {
                                     alert("Fail" + data);
                                 }                            
