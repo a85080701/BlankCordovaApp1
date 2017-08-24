@@ -678,16 +678,16 @@
         </div>
         <div data-role="content">
             <div>
-                <label for="name">姓名：</label><input type="text"  id="editName">
+                <label for="editName">姓名：</label><input type="text"  id="editname">
             </div>
 
             <div>
                 性別：
-                <label for="editmale"><input id="editmale" type="radio" name="sex" value="男" checked="checked" />男</label>
+                <label for="editmale"><input id="editmale" type="radio" name="sex" value="男"/>男</label>
                 <label for="editfemale"><input id="editfemale" type="radio" name="sex" value="女" />女</label>
             </div>
             <div>
-                <label for="date">生日：</label><input type="date" id="editdate">
+                <label for="date">生日：</label><input type="date" id="editdate" name="editdate">
             </div>
             <div>
                 <label for="pwd">請輸入密碼：</label><input type="password" id="editpwd">
@@ -855,38 +855,59 @@
                     });
 
 
-
-
-
-
                 });
 
+                $("#btnEditOK").click(function () {
+                    var pwd = $("#editpwd").val();
+                    var name = $("#editname").val();
+                    var date = $('input[name=editdate]').val();
+                    var sex = $("input[name='sex']").val();
+                    var email = logined['email'];
+                    var a = {
+                        "mode": "edit",
+                        "login": [
+                                       {
+                                        "pwd": pwd,
+                                        "sex": sex,
+                                        "date": date,
+                                        "name": name,
+                                        "email":email
+                                       }
+                                    
+                                ]
 
+                    }
 
-                $("#editok").click(function () {
-
-                    var pwd = $("#editpwd").val()
-                    var email = logined.getItem('email');
+                    $.ajax({
+                        url: "http://localhost/Test/mobile.ashx",
+                        type: "POST",
+                        dataType: "json",
+                        contentType: 'application/json; charset=utf-8',
+                        data: JSON.stringify(a),
+                        success: function (data) {
+                            alert('成功')
+                        },
+                        error: function(){alert('失敗')}
+                    })
                 });
 
                 $("#btnEdit").click(function () {
-                    $("#editName").val(logined['name']);
+                    $("#editname").val(logined['name']);
                     $('#editdate').val(logined['date']);
                     if(logined['sex']=='男')
                     {
-                        console.dir("男")
-                        $("input[name='sex']")[1].Checked='false';
-                        $("input[name='sex'][value='男']").attr('checked',true);
+                        $("input[id='editfemale']").attr("checked", "");;
+                        $("input[name='sex'][value='男']").attr("checked", "checked");
                     }
                     else
                     {
-                        console.dir("女")
-                        $("input[name='sex']")[0].Checked = 'false';
-                      //  $("input[name='sex'][value='男']").attr('checked', false);
-                        $("input[name='sex'][value='女']").attr('checked', true);
+                        $("input[id='editmale']").attr("checked", "");
+                        $("input[name='sex'][value='女']").attr("checked", "checked");
                         
                     }
                 });
+
+                
             //偉聰寫程式的地方
 
                 //Google Map for according county
