@@ -110,4 +110,5 @@
   <preference name="target-device" value="handset" />
   <preference name="BackupWebStorage" value="none" />
   <preference name="deployment-target" value="" />
+  <plugin name="cordova-plugin-geolocation" version="2.4.3" />
 </widget>

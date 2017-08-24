@@ -448,7 +448,7 @@
             </div>
         </div>
         <div data-role="content">
-            <form id="form1" runat="server">
+            <form id="form1" >
                 <label>請選擇縣市</label>
                 <select id="list">
                     <option></option>
@@ -585,8 +585,8 @@
                 </div>
                 <div class="ui-field-contain">
                     性別：
-                    <label for="male"><input id="regMale" type="radio" name="sex" checked />男</label>
-                    <label for="female"><input id="regFemale" type="radio" name="sex" />女</label>
+                    <label for="regMale"><input id="regMale" type="radio" name="regsex" checked />男</label>
+                    <label for="regFemale"><input id="regFemale" type="radio" name="regsex" />女</label>
                 </div>
                 <div class="ui-field-contain">
                     <label for="date">生日：</label><input type="date" id="regDate">
@@ -683,8 +683,8 @@
 
             <div>
                 性別：
-                <label for="male"><input id="male" type="radio" name="sex" checked />男</label>
-                <label for="female"><input id="female" type="radio" name="sex" />女</label>
+                <label for="editmale"><input id="editmale" type="radio" name="sex" value="男" checked="checked" />男</label>
+                <label for="editfemale"><input id="editfemale" type="radio" name="sex" value="女" />女</label>
             </div>
             <div>
                 <label for="date">生日：</label><input type="date" id="editdate">
@@ -756,7 +756,6 @@
 
     <script type="text/javascript">
         $(document).on('ready', function () {
-            alert("jgi")
                 //start of slick
                 $(".regular").slick({
                     dots: true,
@@ -870,6 +869,25 @@
                     var email = logined.getItem('email');
                 });
 
+                $("#btnEdit").click(function () {
+                    $("#editName").val(logined['name']);
+                    $('#editdate').val(logined['date']);
+                    if(logined['sex']=='男')
+                    {
+                        console.dir("男")
+                        $("input[name='sex']")[1].Checked='false';
+                        $("input[name='sex'][value='男']").attr('checked',true);
+                    }
+                    else
+                    {
+                        console.dir("女")
+                        $("input[name='sex']")[0].Checked = 'false';
+                      //  $("input[name='sex'][value='男']").attr('checked', false);
+                        $("input[name='sex'][value='女']").attr('checked', true);
+                        
+                    }
+                });
+            //偉聰寫程式的地方
 
                 //Google Map for according county
                 function MapFunction(i, returnObj) {
