@@ -8,6 +8,7 @@
     <script src="scripts/jquery-1.11.3.min.js"></script>
     <script src="scripts/jquery.mobile-1.4.5.min.js"></script>
     <script src="slick/slick.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpOXj-mG3Zq0d69SdWtJ_VjVDlrGAZMvQ&callback=a"></script>
 
     <style type="text/css">
         .slider {
@@ -30,8 +31,9 @@
     </style>
 
 </head>
-<body>
+<body onload="onLoad()">
 
+    <!-- Start of main page -->
     <div data-role="page" id="main">
         <!-- Start of main page -->
         <div data-role="header" data-position="fixed">
@@ -63,18 +65,698 @@
             </section>
         </div><!-- /content -->
 
-        <script type="text/javascript">
+        
+
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar" data-mini="true">
+                <ul>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-home ui-btn-icon-top ui-btn-active ui-state-persist" href="#main">首頁</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-bullets ui-btn-icon-top" href="#order">點餐</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-heart ui-btn-icon-top" href="#offer">優惠</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-location ui-btn-icon-top" href="#stores">門市</a>
+                    </li>
+                </ul>
+            </div>
+        </div><!-- /footer -->
+    </div>
+    <!-- End of main page -->
+
+    <!-- Start of message page -->
+    <div data-role="page" id="message">
+        <div data-role="header" data-position="fixed">
+            <h1>訊息</h1>
+        </div><!-- /header -->
+        <div role="main" class="ui-content">
+            message
+        </div><!-- /content -->
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar" data-mini="true">
+                <ul>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-home ui-btn-icon-top " href="#main">首頁</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-bullets ui-btn-icon-top ui-btn-active ui-state-persist" href="#order">點餐</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-heart ui-btn-icon-top" href="#offer">優惠</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-location ui-btn-icon-top" href="#stores">門市</a>
+                    </li>
+                </ul>
+            </div>
+        </div><!-- /footer -->
+    </div>
+    <!-- End of message page -->
+
+    <!-- Start of order page -->
+    <div data-role="page" id="order">
+        <div data-role="header" data-position="fixed">
+            <h1>分類</h1>
+            <a href="#shoppingcar" data-icon="shop" data-iconpos="left">購物車</a>
+            <div data-role="navbar" data-mini="true">
+                <ul>
+                    <li>
+                        <a class="ui-btn ui-corner-all" data-transition="none" href="#coffee">咖啡</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all " data-transition="none" href="#cake">蛋糕</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all " data-transition="none" href="#bread">麵包</a>
+                    </li>
+                </ul>
+            </div>
+        </div><!-- /header -->
+        <div role="main" class="ui-content">
+
+        </div><!-- /content -->
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar" data-mini="true">
+                <ul>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-home ui-btn-icon-top " href="#main">首頁</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-bullets ui-btn-icon-top ui-btn-active ui-state-persist" href="#order">點餐</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-heart ui-btn-icon-top" href="#offer">優惠</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-location ui-btn-icon-top" href="#stores">門市</a>
+                    </li>
+                </ul>
+            </div>
+        </div><!-- /footer -->
+    </div>
+    <!-- End of order page -->
+
+    <!-- Start of coffee page -->
+    <div data-role="page" id="coffee">
+        <div data-role="header" data-position="fixed">
+
+            <h1>咖啡</h1>
+            <a href="#shoppingcar" data-icon="shop" data-iconpos="left">購物車</a>
+            <div data-role="navbar" data-mini="true">
+                <ul>
+                    <li>
+                        <a class="ui-btn ui-corner-all ui-btn-active ui-state-persist" data-transition="none" href="#coffee">咖啡</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all " data-transition="none" href="#cake">蛋糕</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all " data-transition="none" href="#bread">麵包</a>
+                    </li>
+                </ul>
+            </div>
+        </div><!-- /header -->
+        <div role="main" class="ui-content">
+            <div class="ui-field-contain">
+                <label>美式咖啡</label><input id="" type="number" min="0" max="100" />
+            </div>
+            <div class="ui-field-contain">
+                <label>拿鐵咖啡</label><input id="" type="number" min="0" max="100" />
+            </div>
+            <div class="ui-field-contain">
+                <label>焦糖咖啡</label><input id="" type="number" min="0" max="100" />
+            </div>
+            <a data-role="button" data-inline="true" id="btnCoffeeCar">加入購物車</a>
+        </div><!-- /content -->
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar" data-mini="true">
+                <ul>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-home ui-btn-icon-top " href="#main">首頁</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-bullets ui-btn-icon-top" href="#order">點餐</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-heart ui-btn-icon-top" href="#offer">優惠</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-location ui-btn-icon-top" href="#stores">門市</a>
+                    </li>
+                </ul>
+            </div>
+        </div><!-- /footer -->
+    </div>
+    <!-- End of coffee page -->
+
+    <!-- Start of cake page -->
+    <div data-role="page" id="cake">
+        <div data-role="header" data-position="fixed">
+
+            <h1>蛋糕</h1>
+            <a href="#shoppingcar" data-icon="shop" data-iconpos="left">購物車</a>
+            <div data-role="navbar" data-mini="true">
+                <ul>
+                    <li>
+                        <a class="ui-btn ui-corner-all" data-transition="none" href="#coffee">咖啡</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-btn-active ui-state-persist" data-transition="none" href="#cake">蛋糕</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all " data-transition="none" href="#bread">麵包</a>
+                    </li>
+                </ul>
+            </div>
+        </div><!-- /header -->
+        <div role="main" class="ui-content">
+            <div class="ui-field-contain">
+                <label>提拉米蘇</label><input id="" type="number" min="0" max="100" />
+            </div>
+            <div class="ui-field-contain">
+                <label>拿破崙</label><input id="" type="number" min="0" max="100" />
+            </div>
+            <div class="ui-field-contain">
+                <label>天使雪莓</label><input id="" type="number" min="0" max="100" />
+            </div>
+            <a data-role="button" data-inline="true" id="btnCakeCar">加入購物車</a>
+        </div><!-- /content -->
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar" data-mini="true">
+                <ul>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-home ui-btn-icon-top " href="#main">首頁</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-bullets ui-btn-icon-top" href="#order">點餐</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-heart ui-btn-icon-top" href="#offer">優惠</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-location ui-btn-icon-top" href="#stores">門市</a>
+                    </li>
+                </ul>
+            </div>
+        </div><!-- /footer -->
+    </div>
+    <!-- End cake page -->
+
+    <!-- Start of bread page -->
+    <div data-role="page" id="bread">
+        <div data-role="header" data-position="fixed">
+
+            <h1>麵包</h1>
+            <a href="#shoppingcar" data-icon="shop" data-iconpos="left">購物車</a>
+            <div data-role="navbar" data-mini="true">
+                <ul>
+                    <li>
+                        <a class="ui-btn ui-corner-all " data-transition="none" href="#coffee">咖啡</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all " data-transition="none" href="#cake">蛋糕</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-btn-active ui-state-persist" data-transition="none" href="#bread">麵包</a>
+                    </li>
+                </ul>
+            </div>
+        </div><!-- /header -->
+        <div role="main" class="ui-content">
+            <div class="ui-field-contain">
+                <label>肉鬆麵包</label><input id="" type="number" min="0" max="100" />
+            </div>
+            <div class="ui-field-contain">
+                <label>波羅麵包</label><input id="" type="number" min="0" max="100" />
+            </div>
+            <div class="ui-field-contain">
+                <label>小可頌</label><input id="" type="number" min="0" max="100" />
+            </div>
+            <a data-role="button" data-inline="true" data-iconpos="top" id="btnBreadCar">加入購物車</a>
+
+        </div><!-- /content -->
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar" data-mini="true">
+                <ul>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-home ui-btn-icon-top " href="#main">首頁</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-bullets ui-btn-icon-top" href="#order">點餐</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-heart ui-btn-icon-top" href="#offer">優惠</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-location ui-btn-icon-top" href="#stores">門市</a>
+                    </li>
+                </ul>
+            </div>
+        </div><!-- /footer -->
+    </div>
+    <!-- End of bread page -->
+
+    <!-- Start of shoppingcar page -->
+    <div data-role="page" id="shoppingcar">
+        <div data-role="header" data-position="fixed">
+            <a data-rel="back" data-role="button" data-icon="arrow-l">上一頁</a>
+            <h1>購物車</h1>
+        </div><!-- /header -->
+        <div role="main" class="ui-content">
+
+        </div><!-- /content -->
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar" data-mini="true">
+                <ul>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-home ui-btn-icon-top " href="#main">首頁</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-bullets ui-btn-icon-top" href="#order">點餐</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-heart ui-btn-icon-top" href="#offer">優惠</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-location ui-btn-icon-top" href="#stores">門市</a>
+                    </li>
+                </ul>
+            </div>
+        </div><!-- /footer -->
+    </div>
+    <!-- End of shoppingcar page -->
+
+    <!-- Start of offer page -->
+    <div data-role="page" id="offer">
+        <div data-role="header" data-position="fixed">
+            <h1>優惠</h1>
+        </div><!-- /header -->
+        <div role="main" class="ui-content">
+            <div class="ui-field-contain">
+                A
+            </div>
+            <div class="ui-field-contain">
+                B
+            </div>
+            <div class="ui-field-contain">
+                C
+            </div>
+            <div class="ui-field-contain">
+                D
+            </div>
+            <div class="ui-field-contain">
+                E
+            </div>
+        </div><!-- /content -->
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar" data-mini="true">
+                <ul>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-home ui-btn-icon-top " href="#main">首頁</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-bullets ui-btn-icon-top " href="#order">點餐</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-heart ui-btn-icon-top ui-btn-active ui-state-persist" href="#offer">優惠</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-location ui-btn-icon-top" href="#stores">門市</a>
+                    </li>
+                </ul>
+            </div>
+        </div><!-- /footer -->
+    </div>
+    <!-- End of offer page -->
+
+    <!-- Start of stores page -->
+    <div data-role="page" id="stores">
+        <div data-role="header" data-position="fixed">
+            <h1>門市</h1>
+            <div data-role="navbar" data-mini="true">
+                <ul>
+                    <li>
+                        <a class="ui-btn ui-corner-all" data-transition="none" href="#accordingcounty">依縣市</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all " data-transition="none" href="#aroundstore">最近門市</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div data-role="content">
+
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar" data-mini="true">
+                <ul>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-home ui-btn-icon-top " href="#main">首頁</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-bullets ui-btn-icon-top" href="#order">點餐</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-heart ui-btn-icon-top" href="#offer">優惠</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-location ui-btn-icon-top ui-btn-active ui-state-persist" href="#stores">門市</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- End of store page -->
+
+    <!-- Start of accordingcounty page -->
+    <div data-role="page" id="accordingcounty">
+        <div data-role="header" data-position="fixed">
+            <h1>門市</h1>
+            <div data-role="navbar" data-mini="true">
+                <ul>
+                    <li>
+                        <a class="ui-btn ui-corner-all ui-btn-active ui-state-persist" data-transition="none" href="#accordingcounty">依縣市</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all " data-transition="none" href="#aroundstore">最近門市</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div data-role="content">
+            <form id="form1" runat="server">
+                <label>請選擇縣市</label>
+                <select id="list">
+                    <option></option>
+                    <option>台中市</option>
+                    <option>台北市</option>
+                    <option>台南市</option>
+                </select>
+                <div id="map_canvas" style="width:100%; height:100%"></div>
+            </form>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar" data-mini="true">
+                <ul>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-home ui-btn-icon-top " href="#main">首頁</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-bullets ui-btn-icon-top" href="#order">點餐</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-heart ui-btn-icon-top" href="#offer">優惠</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-location ui-btn-icon-top ui-btn-active ui-state-persist" href="#stores">門市</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- End of accordingcounty page -->
+
+    <!-- Start of aroundstore page -->
+    <div data-role="page" id="aroundstore">
+        <div data-role="header" data-position="fixed">
+            <h1>門市</h1>
+            <div data-role="navbar" data-mini="true">
+                <ul>
+                    <li>
+                        <a class="ui-btn ui-corner-all" data-transition="none" href="#accordingcounty">依縣市</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all ui-btn-active ui-state-persist " data-transition="none" href="#aroundstore">最近門市</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div data-role="content">
+            <div>
+                <div id="maparound" style="height:300px; width:100%"></div>
+            </div>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar" data-mini="true">
+                <ul>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-home ui-btn-icon-top " href="#main">首頁</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-bullets ui-btn-icon-top" href="#order">點餐</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-heart ui-btn-icon-top" href="#offer">優惠</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-location ui-btn-icon-top ui-btn-active ui-state-persist" href="#stores">門市</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- End of aroundstore page -->
+
+
+
+
+    <!-- Start of login page -->
+    <div data-role="page" id="login">
+        <div data-role="header">
+            <a data-rel="back" data-role="button" data-icon="arrow-l">上一頁</a>
+            <h1>會員登入</h1>
+            <a href="#registered" data-role="button" data-icon="plus" data-transition="slide">註冊</a>
+        </div>
+        <div data-role="content">
+            <form method="post" action="#">
+                <div>
+                    <label for="email">信箱：</label><input type="email" name="email" id="logemail" value="gg@inin.der">
+                </div>
+                <div>
+                    <label for="pwd">密碼：</label><input type="password" name="pwd" id="logpwd" value="c8763">
+                </div>
+                <div>
+                    <a href="#" data-role="button" data-inline="true" id="btnlogin">登入</a>
+
+                </div>
+            </form>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar" data-mini="true">
+                <ul>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-home ui-btn-icon-top " href="#main">首頁</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-bullets ui-btn-icon-top" href="#order">點餐</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-heart ui-btn-icon-top" href="#offer">優惠</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-location ui-btn-icon-top" href="#stores">門市</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>>
+    <!-- End login page -->
+
+    <!-- Start of registered page -->
+    <div data-role="page" id="registered">
+        <div data-role="header" data-position="fixed">
+            <a data-rel="back" data-role="button" data-icon="arrow-l">上一頁</a>
+            <h1>會員註冊</h1>
+        </div>
+        <div class="ui-content">
+            <form method="post" action="#">
+                <div class="ui-field-contain">
+                    <label for="name">姓名：</label><input type="text" id="regName">
+                </div>
+                <div class="ui-field-contain">
+                    <label for="email">信箱：</label><input type="email" id="regMmail">
+                </div>
+                <div class="ui-field-contain">
+                    <label for="pwd">密碼：</label><input type="password" id="regPwd">
+                </div>
+                <div class="ui-field-contain">
+                    性別：
+                    <label for="male"><input id="regMale" type="radio" name="sex" checked />男</label>
+                    <label for="female"><input id="regFemale" type="radio" name="sex" />女</label>
+                </div>
+                <div class="ui-field-contain">
+                    <label for="date">生日：</label><input type="date" id="regDate">
+                </div>
+                <div>
+                    <a href="#main" data-role="button" data-inline="true" id="btnReg">確認</a>
+                </div>
+            </form>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar" data-mini="true">
+                <ul>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-home ui-btn-icon-top" href="#main">首頁</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-bullets ui-btn-icon-top" href="#order">點餐</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-heart ui-btn-icon-top" href="#offer">優惠</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-location ui-btn-icon-top" href="#stores">門市</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- End of registered page -->
+
+
+    <!-- Start of my page -->
+    <div data-role="page" id="my">
+        <div data-role="header" data-position="fixed">
+            <a data-rel="back" data-role="button" data-icon="arrow-l">上一頁</a>
+            <h1>會員資料</h1>
+            <a href="#deposit" data-role="button" data-icon="star" data-transition="slide">儲值</a>
+        </div>
+        <div data-role="content">
+            <div>
+                姓名：<input type="text" id="myname" readonly="readonly">
+            </div>
+            <div>
+                信箱：<input type="email" id="myemail" readonly="readonly">
+            </div>
+            <div>
+                性別：<input type="text" id="mysex" readonly="readonly">
+            </div>
+            <div>
+                生日：<input type="date" id="mydate" readonly="readonly" >
+            </div>
+            <div>
+                餘額：<input type="text" id="mybalance" readonly="readonly">
+            </div>
+
+            <div>
+                <a href="#edit" data-role="button" data-inline="true" id="btnEdit">修改資料</a>
+                <a href="#editpwd" data-role="button" data-inline="true">修改密碼</a>
+                <a href="#main" data-role="button" data-inline="true" id="btnLogout">登出</a>
+            </div>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar" data-mini="true">
+                <ul>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-home ui-btn-icon-top" href="#main">首頁</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-bullets ui-btn-icon-top" href="#order">點餐</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-heart ui-btn-icon-top" href="#offer">優惠</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-location ui-btn-icon-top" href="#stores">門市</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- End of my page -->
+
+    <!-- Start of edit page -->
+    <div data-role="page" id="edit">
+        <div data-role="header"  data-position="fixed">
+            <a data-role="button" data-rel="back" data-icon="arrow-l">上一頁</a>
+            <h1>會員資料修改</h1>
+            <a href="#main" data-role="button" data-icon="home">首頁</a>
+        </div>
+        <div data-role="content">
+            <div>
+                <label for="name">姓名：</label><input type="text"  id="editName">
+            </div>
+
+            <div>
+                性別：
+                <label for="male"><input id="male" type="radio" name="sex" checked />男</label>
+                <label for="female"><input id="female" type="radio" name="sex" />女</label>
+            </div>
+            <div>
+                <label for="date">生日：</label><input type="date" id="editdate">
+            </div>
+            <div>
+                <label for="pwd">請輸入密碼：</label><input type="password" id="editpwd">
+            </div>
+            <div>
+                <a href="#main" data-role="button" data-inline="true" id="btnEditOK">確定</a>
+            </div>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar" data-mini="true">
+                <ul>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-home ui-btn-icon-top" href="#main">首頁</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-bullets ui-btn-icon-top" href="#order">點餐</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-heart ui-btn-icon-top" href="#offer">優惠</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-location ui-btn-icon-top" href="#stores">門市</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- End of edit page -->
+
+    <!-- Start of editPwd page -->
+    <div data-role="page" id="changepwd">
+        你啊罵很胖
+
+    </div>
+    <!-- End of editPwd page -->
+
+    <!-- Start of deposit page -->
+    <div data-role="page" id="deposit">
+        <div data-role="header" data-position="fixed">
+            <a data-rel="back" data-role="button" data-icon="arrow-l">上一頁</a>
+            <h1>儲值</h1>
+        </div>
+        <div data-role="content">
+
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar" data-mini="true">
+                <ul>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-home ui-btn-icon-top" href="#main">首頁</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-bullets ui-btn-icon-top" href="#order">點餐</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-heart ui-btn-icon-top" href="#offer">優惠</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-location ui-btn-icon-top" href="#stores">門市</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- End of deposit page -->
+
+    <script type="text/javascript">
             $(document).on('ready', function () {
-                var logined = window.localStorage;
-
-                if (logined.getItem("logined") == null)
-                    $("#member").text("登入")
-
-                else {
-                    $("#member").text("會員")
-                }
-
-
+                //start of slick
                 $(".regular").slick({
                     dots: true,
                     infinite: true,
@@ -95,32 +777,44 @@
                     variableWidth: true
                 });
 
+                //end of slick
+
+                //是否登入判斷
+                var logined = window.localStorage;
+
+                if (logined.getItem("logined") == null)
+                    $("#member").text("登入")
+
+                else {
+                    $("#member").text("會員")
+                }
+
                 $("#member").click(function () {
 
                     if (logined.getItem("logined") == null)
                         location.href = '#login';
                     else
                         location.href = "#my";
-                    $('#infoname').val(logined['name']);
-                    $('#infosex').val(logined['sex']);
-                    $("#infodate").val(logined['birthday']);
-                    $("#infoemail").val(logined['email']);
-                    $('#infobalance').val(logined['money']);
-                    
+                    $('#myname').val(logined['name']);
+                    $('#mysex').val(logined['sex']);
+                    $("#mydate").val(logined['date']);
+                    $("#myemail").val(logined['email']);
+                    $('#mybalance').val(logined['balance']);
 
-                        
+
+
                 });
-
-                $("#logout").click(function () {
+                //登出
+                $("#btnLogout").click(function () {
                     logined.clear();
                     $("#member").text("登入")
                 });
-
-                $("#loginbtn").click(function () {
+                //登入抓取資料
+                $("#btnlogin").click(function () {
 
                     var session = {};
-                    var email = $('#email').val();
-                    var pwd = $('#pwd').val();
+                    var email = $('#logemail').val();
+                    var pwd = $('#logpwd').val();
                     var a = {
                         "mode": "login",
                         "login": [
@@ -142,8 +836,8 @@
                                 session.islogined = true;
                                 logined.setItem("name", session.name);
                                 logined.setItem('sex', session.sex);
-                                logined.setItem('money', session.money);
-                                logined.setItem('birthday', session.birthday);
+                                logined.setItem('balance', session.balance);
+                                logined.setItem('date', session.date);
                                 logined.setItem('email',session.email);
                                 logined .setItem("logined", 'true');
                                 $("#member").text("會員");
@@ -153,8 +847,8 @@
                             else
                             {
                                 alert(paa.message);
-                                $("#email").val("");
-                                $("#pwd").val('');
+                                $("#logEmail").val("");
+                                $("#logEwd").val('');
                             }
                         },
                         error: function () { alert('失敗') }
@@ -168,6 +862,7 @@
                 });
 
 
+
                 $("#editok").click(function () {
 
                     var pwd = $("#editpwd").val()
@@ -175,223 +870,81 @@
                 });
 
 
+                //Google Map for according county
+                function MapFunction(i, returnObj) {
+                    for (var item in returnObj) {
+                        var latlng = new google.maps.LatLng(returnObj.lat, returnObj.lng);
+                        var mapOptions = {
+                            zoom: 16, //初始放大倍數
+                            center: latlng, //中心點所在位置
+                            mapTypeId: google.maps.MapTypeId.ROADMAP //正常2D道路模式
+                        };
+                        var map = new google.maps.Map(
+                             document.getElementById("map_canvas"), mapOptions);
+                        var marker = new google.maps.Marker({
+                            position: latlng,
+                            map: map,
+                            title: returnObj.name
+                        });
+                    }
+                }
+
+                var sel = $('select[id="list"]'); //指定要處理的特定元素物件名稱
+                sel.on('change', function (a) {
+                    switch (true) {
+                        case sel.val() == "台中市":
+                            var poststore = JSON.stringify(getstore = { "county": "台中市" });
+                            $.ajax({
+                                type: "POST",
+                                url: "http://localhost/TEST/HandlerStore.ashx",
+                                data: poststore,
+                                dataType: "json",
+                                success: function (data) {
+                                    jQuery.each(data, MapFunction);
+                                },
+                                error: function (data) {
+                                    alert("Fail" + data);
+                                }
+                            });
+
+                            break;
+                        case sel.val() == "台北市":
+                            var poststore = JSON.stringify(getstore = { "county": "台北市" });
+                            $.ajax({
+                                type: "POST",
+                                url: "http://localhost/TEST/HandlerStore.ashx",
+                                data: poststore,
+                                dataType: "json",
+                                success: function (data) {
+                                    jQuery.each(data, MapFunction);
+                                },
+                                error: function (data) {
+                                    alert("Fail" + data);
+                                }
+                            });
+                            break;
+                        case sel.val() == "台南市":
+                            var poststore = JSON.stringify(getstore = { "county": "台南市" });
+                            $.ajax({
+                                type: "POST",
+                                url: "http://localhost/TEST/HandlerStore.ashx",
+                                data: poststore,
+                                dataType: "json",
+                                success: function (data) {
+                                    jQuery.each(data, MapFunction);
+                                },
+                                error: function (data) {
+                                    alert("Fail" + data);
+                                }
+                            });
+                            break;
+                            google.maps.event.addDomListener(window, 'load', a);
+                    }
+                })
             });
 
 
-        </script>
-
-        <div data-role="footer" data-position="fixed">
-            <div data-role="navbar" data-mini="true">
-                <ul>
-                    <li>
-                        <a class="ui-btn ui-corner-all  ui-icon-home ui-btn-icon-top ui-btn-active ui-state-persist" href="#main">首頁</a>
-                    </li>
-                    <li>
-                        <a class="ui-2 btn ui-corner-all  ui-icon-bullets ui-btn-icon-top" href="#">點餐</a>
-                    </li>
-                    <li>
-                        <a class="ui-btn ui-corner-all  ui-icon-heart ui-btn-icon-top" href="#">優惠</a>
-                    </li>
-                    <li>
-                        <a class="ui-btn ui-corner-all  ui-icon-location ui-btn-icon-top" href="#">門市</a>
-                    </li>
-                </ul>
-            </div>
-        </div><!-- /footer -->
-    </div><!-- End of main page -->
-    <!-- Start of second page -->
-    <div data-role="page" id="order">
-
-        <div data-role="header">
-            <h1>Bar</h1>
-        </div><!-- /header -->
-
-        <div role="main" class="ui-content">
-            <p><a href="#" data-role="button" data-rel="back" data-mini="true">Back to foo</a></p>
-        </div><!-- /content -->
-
-        <div data-role="footer">
-            <h4>Page Footer</h4>
-        </div><!-- /footer -->
-    </div><!-- End of second page -->
-    <!-- Start of login page -->
-    <div data-role="page" id="login">
-        <div data-role="header">
-            <a data-rel="back" data-role="button" data-icon="arrow-l">上一頁</a>
-            <h1>會員登入</h1>
-            <a href="#registered" data-role="button" data-icon="plus" data-transition="slide">註冊</a>
-        </div>
-        <div data-role="content">
-            <form method="post" action="#">
-                <div>
-                    <label for="email">信箱：</label><input type="email" name="email" id="email" value="gg@inin.der">
-                </div>
-                <div>
-                    <label for="pwd">密碼：</label><input type="password" name="pwd" id="pwd" value="c8763">
-                </div>
-                <div>
-                    <a href="#" data-role="button" data-inline="true" id="loginbtn">登入</a>
-
-                </div>
-                <label id="lbl">gg</label>
-            </form>
-        </div>
-        <div data-role="footer" data-position="fixed">
-            <div data-role="navbar" data-mini="true">
-                <ul>
-                    <li>
-                        <a class="ui-btn ui-corner-all  ui-icon-home ui-btn-icon-top " href="#">首頁</a>
-                    </li>
-                    <li>
-                        <a class="ui-btn ui-corner-all  ui-icon-bullets ui-btn-icon-top" href="#">點餐</a>
-                    </li>
-                    <li>
-                        <a class="ui-btn ui-corner-all  ui-icon-heart ui-btn-icon-top" href="#">優惠</a>
-                    </li>
-                    <li>
-                        <a class="ui-btn ui-corner-all  ui-icon-location ui-btn-icon-top" href="#">門市</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>><!-- End login page -->
-    <!-- Start of registered page -->
-    <div data-role="page" id="registered">
-        <div data-role="header">
-            <a data-rel="back" data-role="button" data-icon="arrow-l">上一頁</a>
-            <h1>會員註冊</h1>
-        </div>
-        <div class="ui-content">
-            <form method="post" action="#">
-                <div>
-                    <label for="name">姓名：</label><input type="text" name="name" id="name">
-                </div>
-                <div>
-                    <label for="email">信箱：</label><input type="email" name="email" id="email">
-                </div>
-                <div>
-                    <label for="pwd">密碼：</label><input type="password" name="pwd" id="pwd">
-                </div>
-                <div>
-                    性別：
-                    <label for="male"><input id="male" type="radio" name="sex" checked />男</label>
-                    <label for="female"><input id="female" type="radio" name="sex" />女</label>
-                </div>
-                <div>
-                    <label for="date">生日：</label><input type="date" id="date">
-                </div>
-                <div>
-                    <a href="#main" data-role="button" data-inline="true">確認</a>
-                </div>
-            </form>
-        </div>
-        <div data-role="footer" data-position="fixed">
-            <div data-role="navbar" data-mini="true">
-                <ul>
-                    <li>
-                        <a class="ui-btn ui-corner-all  ui-icon-home ui-btn-icon-top" href="#">首頁</a>
-                    </li>
-                    <li>
-                        <a class="ui-btn ui-corner-all  ui-icon-bullets ui-btn-icon-top" href="#">點餐</a>
-                    </li>
-                    <li>
-                        <a class="ui-btn ui-corner-all  ui-icon-heart ui-btn-icon-top" href="#">優惠</a>
-                    </li>
-                    <li>
-                        <a class="ui-btn ui-corner-all  ui-icon-location ui-btn-icon-top" href="#">門市</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div><!-- End of registered page -->
-
-    <div data-role="page" id="changepwd">
-        你啊罵很胖
-
-    </div>
-    <!-- Start of my page -->
-    <div data-role="page" id="my">
-        <div data-role="header" data-position="fixed">
-            <a data-rel="back" data-role="button" data-icon="arrow-l">上一頁</a>
-            <h1>會員資料</h1>
-            <a href="#deposit" data-role="button" data-icon="star" data-transition="slide">儲值</a>
-        </div>
-        <div data-role="content">
-            <div>
-                姓名：<input type="text" id="infoname" readonly="readonly">
-            </div>
-            <div>
-                信箱：<input type="email" id="infoemail" readonly="readonly">
-            </div>
-            <div>
-                性別：<input type="text" id="infosex" readonly="readonly">
-            </div>
-            <div>
-                生日：<input type="date" id="infodate" readonly="readonly" >
-            </div>
-            <div>
-                餘額：<input type="text" id="infobalance" readonly="readonly">
-            </div>
-
-            <div>
-                <a href="#edit" data-role="button" data-inline="true">修改資料</a>
-                <a href="#editpwd" data-role="button" data-inline="true">修改密碼</a>
-                <a href="#main" data-role="button" data-inline="true" id="logout">登出</a>
-            </div>
-        </div>
-        <div data-role="footer" data-position="fixed">
-            <div data-role="navbar" data-mini="true">
-                <ul>
-                    <li>
-                        <a class="ui-btn ui-corner-all  ui-icon-home ui-btn-icon-top" href="#main">首頁</a>
-                    </li>
-                    <li>
-                        <a class="ui-btn ui-corner-all  ui-icon-bullets ui-btn-icon-top" href="#order">點餐</a>
-                    </li>
-                    <li>
-                        <a class="ui-btn ui-corner-all  ui-icon-heart ui-btn-icon-top" href="#offer">優惠</a>
-                    </li>
-                    <li>
-                        <a class="ui-btn ui-corner-all  ui-icon-location ui-btn-icon-top" href="#stores">門市</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div><!-- End of my page -->
-    <!-- Start of edit page -->
-    <div data-role="page" id="edit">
-        <div data-role="header">
-            <a data-role="button" data-rel="back" data-icon="arrow-l">上一頁</a>
-            <h1>會員資料修改</h1>
-            <a href="#main" data-role="button" data-icon="home">首頁</a>
-        </div>
-        <div data-role="content">
-            <div>
-                <label for="name">姓名：</label><input type="text"  id="editname">
-            </div>
-   <!--         <div>
-                <label for="email">信箱：</label><input type="email" id="editemail">
-            </div>-->
-
-            <div>
-                性別：
-                <label for="male"><input id="male" type="radio" name="sex" checked />男</label>
-                <label for="female"><input id="female" type="radio" name="sex" />女</label>
-            </div>
-            <div>
-                <label for="date">生日：</label><input type="date" id="editdate">
-            </div>
-            <div>
-                <label for="pwd">請輸入密碼：</label><input type="password" id="editpwd">
-            </div>
-            <div>
-                <a href="#main" data-role="button" data-inline="true" id="editok">確定</a>
-            </div>
-        </div>
-        <div data-role="footer" data-position="fixed">
-
-        </div>
-    </div><!-- End of edit page -->
+    </script>
 
 </body>
 </html>
