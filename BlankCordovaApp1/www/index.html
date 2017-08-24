@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css">
     <link rel="stylesheet" type="text/css" href="slick/slick.css">
@@ -38,7 +39,7 @@
         <!-- Start of main page -->
         <div data-role="header" data-position="fixed">
             <h1>有料餐點</h1>
-            <a class="ui-btn ui-corner-all  ui-icon-mail ui-btn-icon-right" href="#">訊息</a>
+            <a class="ui-btn ui-corner-all  ui-icon-mail ui-btn-icon-right" href="#message">訊息</a>
             <a class="ui-btn ui-corner-all  ui-icon-user ui-btn-icon-left" data-transition="slide" id="member">會員</a>
         </div><!-- /header -->
         <!-- 輪播 -->
@@ -91,6 +92,7 @@
     <!-- Start of message page -->
     <div data-role="page" id="message">
         <div data-role="header" data-position="fixed">
+            <a data-rel="back" data-role="button" data-icon="arrow-l">上一頁</a>
             <h1>訊息</h1>
         </div><!-- /header -->
         <div role="main" class="ui-content">
@@ -103,7 +105,7 @@
                         <a class="ui-btn ui-corner-all  ui-icon-home ui-btn-icon-top " href="#main">首頁</a>
                     </li>
                     <li>
-                        <a class="ui-btn ui-corner-all  ui-icon-bullets ui-btn-icon-top ui-btn-active ui-state-persist" href="#order">點餐</a>
+                        <a class="ui-btn ui-corner-all  ui-icon-bullets ui-btn-icon-top" href="#order">點餐</a>
                     </li>
                     <li>
                         <a class="ui-btn ui-corner-all  ui-icon-heart ui-btn-icon-top" href="#offer">優惠</a>
@@ -540,7 +542,7 @@
                     <label for="pwd">密碼：</label><input type="password" id="logPwd" value="c8763">
                 </div>
                 <div>
-                    <a href="#main" data-role="button" data-inline="true" id="btnlogin">登入</a>
+                    <a href="#main" data-role="button" data-inline="true" id="btnLogin">登入</a>
 
                 </div>
             </form>
@@ -795,11 +797,11 @@
                         location.href = '#login';
                     else
                         location.href = "#my";
-                    $('#myname').val(logined['name']);
-                    $('#mysex').val(logined['sex']);
-                    $("#mydate").val(logined['date']);
-                    $("#myemail").val(logined['email']);
-                    $('#mybalance').val(logined['balance']);
+                    $('#myName').val(logined['name']);
+                    $('#mySex').val(logined['sex']);
+                    $("#myDate").val(logined['date']);
+                    $("#myEmail").val(logined['email']);
+                    $('#myBalance').val(logined['balance']);
 
 
 
@@ -810,11 +812,11 @@
                     $("#member").text("登入")
                 });
                 //登入抓取資料
-                $("#btnlogin").click(function () {
+                $("#btnLogin").click(function () {
 
                     var session = {};
-                    var email = $('#logemail').val();
-                    var pwd = $('#logpwd').val();
+                    var email = $('#logEmail').val();
+                    var pwd = $('#logPwd').val();
                     var a = {
                         "mode": "login",
                         "login": [
@@ -848,20 +850,12 @@
                             {
                                 alert(paa.message);
                                 $("#logEmail").val("");
-                                $("#logEwd").val('');
+                                $("#logPwd").val('');
                             }
                         },
                         error: function () { alert('失敗') }
                     });
-
-
-
-
-
-
                 });
-
-
 
                 $("#editok").click(function () {
 
@@ -871,42 +865,45 @@
 
 
             //Google Map for according county 24.1662731 , 120.7218959
-                function MapFunction(i, returnObj) {
-                    for (var item in returnObj) {
-                        var latlng = new google.maps.LatLng(returnObj.lat, returnObj.lng);
-                        var mapOptions = {
-                            zoom: 16, //初始放大倍數
-                            center: latlng, //中心點所在位置
-                            mapTypeId: google.maps.MapTypeId.ROADMAP //正常2D道路模式
-                        };
-                        var map = new google.maps.Map(
-                             document.getElementById("map_canvas"), mapOptions);
-                        var marker = new google.maps.Marker({
-                            position: latlng,
-                            map: map,
-                            title: returnObj.name
-                        });
-                    }
+                function MapFunction() {
+                    
                 }
 
                 var sel = $('select[id="list"]'); //指定要處理的特定元素物件名稱
-                sel.on('change', function () {
+                sel.on('change', function a() {
                     switch (true) {
                         case sel.val() == "台中市":
-                            var poststore = JSON.stringify(getstore = { "county": "台中市" });
+                        //var poststore = JSON.stringify(getstore = { "county": "台中市" });
+                            var getstore = {
+                                "county":"台中市"
+                            };
+                            var poststore = JSON.stringify(getstore);
+
                             $.ajax({
                                 type: "POST",
                                 url: "http://localhost/TEST/HandlerStore.ashx",
                                 data: poststore,
                                 dataType: "json",
+                                contentType: "application/json; charset=utf-8",
                                 success: function (data) {
-                                    jQuery.each(data, MapFunction);
-                                },
+                                    var latlng = new google.maps.LatLng(data.lat, data.lng);
+                                    var mapOptions = {
+                                        zoom: 16, //初始放大倍數
+                                        center: latlng, //中心點所在位置
+                                        mapTypeId: google.maps.MapTypeId.ROADMAP //正常2D道路模式
+                                    };
+                                    var map = new google.maps.Map(
+                                         document.getElementById("map_canvas"), mapOptions);
+                                    var marker = new google.maps.Marker({
+                                        position: latlng,
+                                        map: map,
+                                        title: data.name
+                                    });                                                                                                     
+                                },                             
                                 error: function (data) {
                                     alert("Fail" + data);
-                                }
+                                }                            
                             });
-
                             break;
                         case sel.val() == "台北市":
                             var poststore = JSON.stringify(getstore = { "county": "台北市" });
@@ -938,7 +935,7 @@
                                 }
                             });
                             break;
-                            google.maps.event.addDomListener(window, 'load');
+                            google.maps.event.addDomListener(window, 'load',a);
                     }
                 })
             });
