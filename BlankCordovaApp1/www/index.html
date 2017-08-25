@@ -448,7 +448,7 @@
             </div>
         </div>
         <div data-role="content">
-            <form id="form1" runat="server">
+            <form id="form1" >
                 <label>請選擇縣市</label>
                 <select id="list">
                     <option></option>
@@ -585,8 +585,8 @@
                 </div>
                 <div class="ui-field-contain">
                     性別：
-                    <label for="male"><input id="regMale" type="radio" name="sex" checked />男</label>
-                    <label for="female"><input id="regFemale" type="radio" name="sex" />女</label>
+                    <label for="regMale"><input id="regMale" type="radio" name="regsex" checked />男</label>
+                    <label for="regFemale"><input id="regFemale" type="radio" name="regsex" />女</label>
                 </div>
                 <div class="ui-field-contain">
                     <label for="date">生日：</label><input type="date" id="regDate">
@@ -643,27 +643,8 @@
             </div>
 
             <div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                <a href="#edit" data-role="button" data-inline="true">修改資料</a>
-                <a href="#editpwd" data-role="button" data-inline="true">修改密碼</a>
-=======
-=======
->>>>>>> parent of 39c336d... Merge branch 'wei'
                 <a href="#edit" data-role="button" data-inline="true" id="btnEdit">修改資料</a>
-<<<<<<< HEAD
-<<<<<<< HEAD
                 <a href="#changepwd" data-role="button" data-inline="true">修改密碼</a>
-<<<<<<< HEAD
->>>>>>> parent of 3f5a546... Revert "暫存"
-=======
-                <a href="#editpwd" data-role="button" data-inline="true">修改密碼</a>
->>>>>>> parent of 26cb4d3... 暫存
-=======
->>>>>>> parent of 39c336d... Merge branch 'wei'
-=======
-                <a href="#changepwd" data-role="button" data-inline="true">修改密碼</a>
->>>>>>> parent of 3f5a546... Revert "暫存"
                 <a href="#main" data-role="button" data-inline="true" id="btnLogout">登出</a>
             </div>
         </div>
@@ -697,18 +678,11 @@
         </div>
         <div data-role="content">
             <div>
-                <label for="name">姓名：</label><input type="text"  id="editName">
+                <label for="editName">姓名：</label><input type="text"  id="editname">
             </div>
 
             <div>
                 性別：
-<<<<<<< HEAD
-                <label for="male"><input id="editMale" type="radio" name="sex" checked />男</label>
-                <label for="female"><input id="editFemale" type="radio" name="sex" />女</label>
-            </div>
-            <div>
-                <label for="date">生日：</label><input type="date" id="editDate">
-=======
                 <label for="editmale"><input id="editmale" type="radio" name="sex" value="男"/>男</label>
                 <label for="editfemale"><input id="editfemale" type="radio" name="sex" value="女" />女</label>
             </div>
@@ -717,7 +691,6 @@
             </div>
             <div>
                 <label for="pwd">請輸入密碼：</label><input type="password" id="editpwd">
->>>>>>> parent of 39c336d... Merge branch 'wei'
             </div>
             <div>
                 <a href="#main" data-role="button" data-inline="true" id="btnEditOK">確定</a>
@@ -743,17 +716,6 @@
         </div>
     </div>
     <!-- End of edit page -->
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-    <!-- Start of editpwd page -->
-    <div data-role="page" id="editpwd">
-        你啊罵很胖
-=======
-=======
->>>>>>> parent of 39c336d... Merge branch 'wei'
         
     <!-- Start of editPwd page -->
     <div data-role="page" id="changepwd">
@@ -774,38 +736,6 @@
         <div>
             <label><a href="#main" data-role="button" data-inline="true" id="editPwdOK">確認</a></label>
         </div>
-<<<<<<< HEAD
->>>>>>> parent of 3f5a546... Revert "暫存"
-=======
-
-    <!-- Start of editPwd page -->
-    <div data-role="page" id="changepwd">
-        你啊罵很胖
->>>>>>> parent of 26cb4d3... 暫存
-=======
->>>>>>> parent of 39c336d... Merge branch 'wei'
-=======
-        
-    <!-- Start of editPwd page -->
-    <div data-role="page" id="changepwd">
-        <div data-role="header" data-position="fixed">
-            <a data-role="button" data-rel="back" data-icon="arrow-l">上一頁</a>
-            <h1>密碼修改</h1>
-            <a href="#main" data-role="button" data-icon="home">首頁</a>
-        </div>
-        <div>
-            <label for="editPwdold">舊密碼:<input type="password" id="editPwdold" /></label>
-        </div>
-        <div>
-            <label for="">新密碼:<input type="password" id="editPwdnew1" /></label>
-        </div>
-        <div>
-            <label for="editPwdnew2">確認新密碼:<input type="password" id="editPwdnew2" /></label>
-        </div>
-        <div>
-            <label><a href="#main" data-role="button" data-inline="true" id="editPwdOK">確認</a></label>
-        </div>
->>>>>>> parent of 3f5a546... Revert "暫存"
 
         <div data-role="footer" data-position="fixed">
             <div data-role="navbar" data-mini="true">
@@ -860,28 +790,6 @@
 
     <script type="text/javascript">
         $(document).on('ready', function () {
-<<<<<<< HEAD
-            //start of slick
-            $(".regular").slick({
-                dots: true,
-                infinite: true,
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                autoplay: true
-            });
-            $(".center").slick({
-                dots: true,
-                infinite: true,
-                centerMode: true,
-                slidesToShow: 3,
-                slidesToScroll: 3
-            });
-            $(".variable").slick({
-                dots: true,
-                infinite: true,
-                variableWidth: true
-            });
-=======
                 //start of slick
                 $(".regular").slick({
                     dots: true,
@@ -902,7 +810,6 @@
                     infinite: true,
                     variableWidth: true
                 });
->>>>>>> parent of 39c336d... Merge branch 'wei'
 
                 //end of slick
 
@@ -980,38 +887,6 @@
                         },
                         error: function () { alert('失敗') }
                     });
-<<<<<<< HEAD
-                    break;
-                case sel.val() == "台北市":
-                    var poststore = JSON.stringify(getstore = { "county": "台北市" });
-                    $.ajax({
-                        type: "POST",
-                        url: "http://localhost/TEST/HandlerStore.ashx",
-                        data: poststore,
-                        dataType: "json",
-                        contentType: "application/json; charset=utf-8",
-                        success: function (data) {                            
-                            return MapFunction(data);                          
-                        },
-                        error: function (data) {
-                            alert("Fail" + data);
-                        }
-                    });
-                    break;
-                case sel.val() == "台南市":
-                    var poststore = JSON.stringify(getstore = { "county": "台南市" });
-                    $.ajax({
-                        type: "POST",
-                        url: "http://localhost/TEST/HandlerStore.ashx",
-                        data: poststore,
-                        dataType: "json",
-                        contentType: "application/json; charset=utf-8",
-                        success: function (data) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-                            return MapFunction(data);
-=======
-=======
 
 
                 });
@@ -1044,10 +919,6 @@
                         contentType: 'application/json; charset=utf-8',
                         data: JSON.stringify(a),
                         success: function (data) {
-<<<<<<< HEAD
->>>>>>> parent of 39c336d... Merge branch 'wei'
-=======
->>>>>>> parent of 3f5a546... Revert "暫存"
                             if (data.message == null)
                             {
                                 alert('成功')
@@ -1060,28 +931,6 @@
                                 alert("密碼錯誤");
                             }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-                            alert('成功')
-                            logined.setItem('name', data.name);
-                            logined.setItem('sex', data.sex);
-                            logined.setItem('date', data.date);
->>>>>>> parent of 26cb4d3... 暫存
-
->>>>>>> parent of 3f5a546... Revert "暫存"
-                        },
-                        error: function (data) {
-                            alert("Fail" + data);
-                        }
-                    });
-                    break;
-            }
-        });
-        
-=======
-=======
->>>>>>> parent of 3f5a546... Revert "暫存"
 
                         },
                         error: function(){alert('失敗')}
@@ -1180,7 +1029,6 @@
                 })
             });
 
->>>>>>> parent of 39c336d... Merge branch 'wei'
 
     </script>
 
