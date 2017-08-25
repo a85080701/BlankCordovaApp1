@@ -896,6 +896,7 @@
                     var name = $("#editname").val();
                     var date = $('input[name=editdate]').val();
                     var sex = $("input[name='sex']").val();
+                    alert($("input[name='sex']").val())
                     var email = logined['email'];
                     var a = {
                         "mode": "edit",
@@ -938,15 +939,20 @@
                 });
 
                 $("#btnEdit").click(function () {
+
+                    console.dir(logined);
+
                     $("#editname").val(logined['name']);
                     $('#editdate').val(logined['date']);
                     if(logined['sex']=='男')
                     {
+                        
                         $("input[id='editfemale']").attr("checked", "");;
                         $("input[name='sex'][value='男']").attr("checked", "checked");
                     }
                     else
                     {
+                        alert('女')
                         $("input[id='editmale']").attr("checked", "");
                         $("input[name='sex'][value='女']").attr("checked", "checked");
                         
