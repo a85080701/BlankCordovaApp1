@@ -886,6 +886,10 @@
                         data: JSON.stringify(a),
                         success: function (data) {
                             alert('成功')
+                            logined.setItem('name', data.name);
+                            logined.setItem('sex', data.sex);
+                            logined.setItem('date', data.date);
+
                         },
                         error: function(){alert('失敗')}
                     })
