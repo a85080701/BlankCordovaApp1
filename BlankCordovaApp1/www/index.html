@@ -653,8 +653,12 @@
                 <a href="#editpwd" data-role="button" data-inline="true">修改密碼</a>
 =======
                 <a href="#edit" data-role="button" data-inline="true" id="btnEdit">修改資料</a>
+<<<<<<< HEAD
                 <a href="#changepwd" data-role="button" data-inline="true">修改密碼</a>
 >>>>>>> parent of 3f5a546... Revert "暫存"
+=======
+                <a href="#editpwd" data-role="button" data-inline="true">修改密碼</a>
+>>>>>>> parent of 26cb4d3... 暫存
                 <a href="#main" data-role="button" data-inline="true" id="btnLogout">登出</a>
             </div>
         </div>
@@ -727,6 +731,7 @@
     </div>
     <!-- End of edit page -->
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     <!-- Start of editpwd page -->
     <div data-role="page" id="editpwd">
@@ -753,25 +758,13 @@
             <label><a href="#main" data-role="button" data-inline="true" id="editPwdOK">確認</a></label>
         </div>
 >>>>>>> parent of 3f5a546... Revert "暫存"
+=======
 
-        <div data-role="footer" data-position="fixed">
-            <div data-role="navbar" data-mini="true">
-                <ul>
-                    <li>
-                        <a class="ui-btn ui-corner-all  ui-icon-home ui-btn-icon-top" href="#main">首頁</a>
-                    </li>
-                    <li>
-                        <a class="ui-btn ui-corner-all  ui-icon-bullets ui-btn-icon-top" href="#order">點餐</a>
-                    </li>
-                    <li>
-                        <a class="ui-btn ui-corner-all  ui-icon-heart ui-btn-icon-top" href="#offer">優惠</a>
-                    </li>
-                    <li>
-                        <a class="ui-btn ui-corner-all  ui-icon-location ui-btn-icon-top" href="#stores">門市</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+    <!-- Start of editPwd page -->
+    <div data-role="page" id="changepwd">
+        你啊罵很胖
+>>>>>>> parent of 26cb4d3... 暫存
+
     </div>
     <!-- End of editPwd page -->
 
@@ -975,6 +968,7 @@
                         contentType: "application/json; charset=utf-8",
                         success: function (data) {
 <<<<<<< HEAD
+<<<<<<< HEAD
                             return MapFunction(data);
 =======
                             if (data.message == null)
@@ -989,6 +983,12 @@
                                 alert("密碼錯誤");
                             }
 
+=======
+                            alert('成功')
+                            logined.setItem('name', data.name);
+                            logined.setItem('sex', data.sex);
+                            logined.setItem('date', data.date);
+>>>>>>> parent of 26cb4d3... 暫存
 
 >>>>>>> parent of 3f5a546... Revert "暫存"
                         },
