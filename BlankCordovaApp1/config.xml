@@ -111,4 +111,8 @@
   <preference name="BackupWebStorage" value="none" />
   <preference name="deployment-target" value="" />
   <plugin name="cordova-plugin-geolocation" version="2.4.3" />
+<<<<<<< HEAD
+=======
+  <plugin name="cordova-plugin-compat" version="1.1.0" />
+>>>>>>> wei
 </widget>
