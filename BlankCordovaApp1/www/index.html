@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css">
     <link rel="stylesheet" type="text/css" href="slick/slick.css">
@@ -8,7 +9,8 @@
     <script src="scripts/jquery-1.11.3.min.js"></script>
     <script src="scripts/jquery.mobile-1.4.5.min.js"></script>
     <script src="slick/slick.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpOXj-mG3Zq0d69SdWtJ_VjVDlrGAZMvQ&callback=a"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpOXj-mG3Zq0d69SdWtJ_VjVDlrGAZMvQ"></script>
+    <script src="scripts/jquery.ui.map.min.js"></script>
 
     <style type="text/css">
         .slider {
@@ -31,14 +33,14 @@
     </style>
 
 </head>
-<body onload="onLoad()">
+<body>
 
     <!-- Start of main page -->
     <div data-role="page" id="main">
         <!-- Start of main page -->
         <div data-role="header" data-position="fixed">
             <h1>有料餐點</h1>
-            <a class="ui-btn ui-corner-all  ui-icon-mail ui-btn-icon-right" href="#">訊息</a>
+            <a class="ui-btn ui-corner-all  ui-icon-mail ui-btn-icon-right" href="#message">訊息</a>
             <a class="ui-btn ui-corner-all  ui-icon-user ui-btn-icon-left" data-transition="slide" id="member">會員</a>
         </div><!-- /header -->
         <!-- 輪播 -->
@@ -91,6 +93,7 @@
     <!-- Start of message page -->
     <div data-role="page" id="message">
         <div data-role="header" data-position="fixed">
+            <a data-rel="back" data-role="button" data-icon="arrow-l">上一頁</a>
             <h1>訊息</h1>
         </div><!-- /header -->
         <div role="main" class="ui-content">
@@ -103,7 +106,7 @@
                         <a class="ui-btn ui-corner-all  ui-icon-home ui-btn-icon-top " href="#main">首頁</a>
                     </li>
                     <li>
-                        <a class="ui-btn ui-corner-all  ui-icon-bullets ui-btn-icon-top ui-btn-active ui-state-persist" href="#order">點餐</a>
+                        <a class="ui-btn ui-corner-all  ui-icon-bullets ui-btn-icon-top" href="#order">點餐</a>
                     </li>
                     <li>
                         <a class="ui-btn ui-corner-all  ui-icon-heart ui-btn-icon-top" href="#offer">優惠</a>
@@ -409,7 +412,9 @@
             </div>
         </div>
         <div data-role="content">
-
+            <div>
+                
+            </div>
         </div>
         <div data-role="footer" data-position="fixed">
             <div data-role="navbar" data-mini="true">
@@ -448,7 +453,7 @@
             </div>
         </div>
         <div data-role="content">
-            <form id="form1" >
+            <form id="form1" runat="server">
                 <label>請選擇縣市</label>
                 <select id="list">
                     <option></option>
@@ -456,7 +461,7 @@
                     <option>台北市</option>
                     <option>台南市</option>
                 </select>
-                <div id="map_canvas" style="width:100%; height:100%"></div>
+                <div id="map_canvas" style="height:300px; width:100%"></div> 
             </form>
         </div>
         <div data-role="footer" data-position="fixed">
@@ -534,13 +539,13 @@
         <div data-role="content">
             <form method="post" action="#">
                 <div>
-                    <label for="email">信箱：</label><input type="email" name="email" id="logemail" value="gg@inin.der">
+                    <label for="email">信箱：</label><input type="email"  id="logEmail" value="gg@inin.der">
                 </div>
                 <div>
-                    <label for="pwd">密碼：</label><input type="password" name="pwd" id="logpwd" value="c8763">
+                    <label for="pwd">密碼：</label><input type="password" id="logPwd" value="c8763">
                 </div>
                 <div>
-                    <a href="#" data-role="button" data-inline="true" id="btnlogin">登入</a>
+                    <a href="#main" data-role="button" data-inline="true" id="btnLogin">登入</a>
 
                 </div>
             </form>
@@ -585,8 +590,8 @@
                 </div>
                 <div class="ui-field-contain">
                     性別：
-                    <label for="regMale"><input id="regMale" type="radio" name="regsex" checked />男</label>
-                    <label for="regFemale"><input id="regFemale" type="radio" name="regsex" />女</label>
+                    <label for="male"><input id="regMale" type="radio" name="sex" checked />男</label>
+                    <label for="female"><input id="regFemale" type="radio" name="sex" />女</label>
                 </div>
                 <div class="ui-field-contain">
                     <label for="date">生日：</label><input type="date" id="regDate">
@@ -627,23 +632,23 @@
         </div>
         <div data-role="content">
             <div>
-                姓名：<input type="text" id="myname" readonly="readonly">
+                姓名：<input type="text" id="myName" readonly="readonly">
             </div>
             <div>
-                信箱：<input type="email" id="myemail" readonly="readonly">
+                信箱：<input type="email" id="myEmail" readonly="readonly">
             </div>
             <div>
-                性別：<input type="text" id="mysex" readonly="readonly">
+                性別：<input type="text" id="mySex" readonly="readonly">
             </div>
             <div>
-                生日：<input type="date" id="mydate" readonly="readonly" >
+                生日：<input type="date" id="myDate" readonly="readonly" >
             </div>
             <div>
-                餘額：<input type="text" id="mybalance" readonly="readonly">
+                餘額：<input type="text" id="myBalance" readonly="readonly">
             </div>
 
             <div>
-                <a href="#edit" data-role="button" data-inline="true" id="btnEdit">修改資料</a>
+                <a href="#edit" data-role="button" data-inline="true">修改資料</a>
                 <a href="#editpwd" data-role="button" data-inline="true">修改密碼</a>
                 <a href="#main" data-role="button" data-inline="true" id="btnLogout">登出</a>
             </div>
@@ -678,22 +683,22 @@
         </div>
         <div data-role="content">
             <div>
-                <label for="editName">姓名：</label><input type="text"  id="editname">
+                <label for="name">姓名：</label><input type="text"  id="editName">
             </div>
 
             <div>
                 性別：
-                <label for="editmale"><input id="editmale" type="radio" name="sex" value="男"/>男</label>
-                <label for="editfemale"><input id="editfemale" type="radio" name="sex" value="女" />女</label>
+                <label for="male"><input id="editMale" type="radio" name="sex" checked />男</label>
+                <label for="female"><input id="editFemale" type="radio" name="sex" />女</label>
             </div>
             <div>
-                <label for="date">生日：</label><input type="date" id="editdate" name="editdate">
+                <label for="date">生日：</label><input type="date" id="editDate">
             </div>
             <div>
-                <label for="pwd">請輸入密碼：</label><input type="password" id="editpwd">
+                <label for="pwd">請輸入密碼：</label><input type="password" id="editPwd">
             </div>
             <div>
-                <a href="#main" data-role="button" data-inline="true" id="btnEditOK">確定</a>
+                <a href="#main" data-role="button" data-inline="true" id="btnEdit">確定</a>
             </div>
         </div>
         <div data-role="footer" data-position="fixed">
@@ -717,8 +722,8 @@
     </div>
     <!-- End of edit page -->
 
-    <!-- Start of editPwd page -->
-    <div data-role="page" id="changepwd">
+    <!-- Start of editpwd page -->
+    <div data-role="page" id="editpwd">
         你啊罵很胖
 
     </div>
@@ -756,237 +761,183 @@
 
     <script type="text/javascript">
         $(document).on('ready', function () {
-                //start of slick
-                $(".regular").slick({
-                    dots: true,
-                    infinite: true,
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    autoplay: true
-                });
-                $(".center").slick({
-                    dots: true,
-                    infinite: true,
-                    centerMode: true,
-                    slidesToShow: 3,
-                    slidesToScroll: 3
-                });
-                $(".variable").slick({
-                    dots: true,
-                    infinite: true,
-                    variableWidth: true
-                });
-
-                //end of slick
-
-                //是否登入判斷
-                var logined = window.localStorage;
-
-                if (logined.getItem("logined") == null)
-                    $("#member").text("登入")
-
-                else {
-                    $("#member").text("會員")
-                }
-
-                $("#member").click(function () {
-
-                    if (logined.getItem("logined") == null)
-                        location.href = '#login';
-                    else
-                        location.href = "#my";
-                    $('#myname').val(logined['name']);
-                    $('#mysex').val(logined['sex']);
-                    $("#mydate").val(logined['date']);
-                    $("#myemail").val(logined['email']);
-                    $('#mybalance').val(logined['balance']);
-
-
-
-                });
-                //登出
-                $("#btnLogout").click(function () {
-                    logined.clear();
-                    $("#member").text("登入")
-                });
-                //登入抓取資料
-                $("#btnlogin").click(function () {
-
-                    var session = {};
-                    var email = $('#logemail').val();
-                    var pwd = $('#logpwd').val();
-                    var a = {
-                        "mode": "login",
-                        "login": [
-                                    {
-                                        "email": email,
-                                        "pwd": pwd
-                                    }
-                        ]
-                    }
-                    $.ajax({
-                        url: "http://localhost/Test/mobile.ashx",
-                        type: "POST",
-                        dataType: "json",
-                        contentType: 'application/json; charset=utf-8',
-                        data: JSON.stringify(a),
-                        success: function (paa) {
-                            if (paa.message == null) {
-                                session = paa;
-                                session.islogined = true;
-                                logined.setItem("name", session.name);
-                                logined.setItem('sex', session.sex);
-                                logined.setItem('balance', session.balance);
-                                logined.setItem('date', session.date);
-                                logined.setItem('email',session.email);
-                                logined .setItem("logined", 'true');
-                                $("#member").text("會員");
-                                location.href = '#main';
-                            }
-
-                            else
-                            {
-                                alert(paa.message);
-                                $("#logEmail").val("");
-                                $("#logEwd").val('');
-                            }
-                        },
-                        error: function () { alert('失敗') }
-                    });
-
-
-                });
-
-                $("#btnEditOK").click(function () {
-                    var pwd = $("#editpwd").val();
-                    var name = $("#editname").val();
-                    var date = $('input[name=editdate]').val();
-                    var sex = $("input[name='sex']").val();
-                    var email = logined['email'];
-                    var a = {
-                        "mode": "edit",
-                        "login": [
-                                       {
-                                        "pwd": pwd,
-                                        "sex": sex,
-                                        "date": date,
-                                        "name": name,
-                                        "email":email
-                                       }
-                                    
-                                ]
-
-                    }
-
-                    $.ajax({
-                        url: "http://localhost/Test/mobile.ashx",
-                        type: "POST",
-                        dataType: "json",
-                        contentType: 'application/json; charset=utf-8',
-                        data: JSON.stringify(a),
-                        success: function (data) {
-                            alert('成功')
-                            logined.setItem('name', data.name);
-                            logined.setItem('sex', data.sex);
-                            logined.setItem('date', data.date);
-
-                        },
-                        error: function(){alert('失敗')}
-                    })
-                });
-
-                $("#btnEdit").click(function () {
-                    $("#editname").val(logined['name']);
-                    $('#editdate').val(logined['date']);
-                    if(logined['sex']=='男')
-                    {
-                        $("input[id='editfemale']").attr("checked", "");;
-                        $("input[name='sex'][value='男']").attr("checked", "checked");
-                    }
-                    else
-                    {
-                        $("input[id='editmale']").attr("checked", "");
-                        $("input[name='sex'][value='女']").attr("checked", "checked");
-                        
-                    }
-                });
-
-                
-            //偉聰寫程式的地方
-
-                //Google Map for according county
-                function MapFunction(i, returnObj) {
-                    for (var item in returnObj) {
-                        var latlng = new google.maps.LatLng(returnObj.lat, returnObj.lng);
-                        var mapOptions = {
-                            zoom: 16, //初始放大倍數
-                            center: latlng, //中心點所在位置
-                            mapTypeId: google.maps.MapTypeId.ROADMAP //正常2D道路模式
-                        };
-                        var map = new google.maps.Map(
-                             document.getElementById("map_canvas"), mapOptions);
-                        var marker = new google.maps.Marker({
-                            position: latlng,
-                            map: map,
-                            title: returnObj.name
-                        });
-                    }
-                }
-
-                var sel = $('select[id="list"]'); //指定要處理的特定元素物件名稱
-                sel.on('change', function (a) {
-                    switch (true) {
-                        case sel.val() == "台中市":
-                            var poststore = JSON.stringify(getstore = { "county": "台中市" });
-                            $.ajax({
-                                type: "POST",
-                                url: "http://localhost/TEST/HandlerStore.ashx",
-                                data: poststore,
-                                dataType: "json",
-                                success: function (data) {
-                                    jQuery.each(data, MapFunction);
-                                },
-                                error: function (data) {
-                                    alert("Fail" + data);
-                                }
-                            });
-
-                            break;
-                        case sel.val() == "台北市":
-                            var poststore = JSON.stringify(getstore = { "county": "台北市" });
-                            $.ajax({
-                                type: "POST",
-                                url: "http://localhost/TEST/HandlerStore.ashx",
-                                data: poststore,
-                                dataType: "json",
-                                success: function (data) {
-                                    jQuery.each(data, MapFunction);
-                                },
-                                error: function (data) {
-                                    alert("Fail" + data);
-                                }
-                            });
-                            break;
-                        case sel.val() == "台南市":
-                            var poststore = JSON.stringify(getstore = { "county": "台南市" });
-                            $.ajax({
-                                type: "POST",
-                                url: "http://localhost/TEST/HandlerStore.ashx",
-                                data: poststore,
-                                dataType: "json",
-                                success: function (data) {
-                                    jQuery.each(data, MapFunction);
-                                },
-                                error: function (data) {
-                                    alert("Fail" + data);
-                                }
-                            });
-                            break;
-                            google.maps.event.addDomListener(window, 'load', a);
-                    }
-                })
+            //start of slick
+            $(".regular").slick({
+                dots: true,
+                infinite: true,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                autoplay: true
+            });
+            $(".center").slick({
+                dots: true,
+                infinite: true,
+                centerMode: true,
+                slidesToShow: 3,
+                slidesToScroll: 3
+            });
+            $(".variable").slick({
+                dots: true,
+                infinite: true,
+                variableWidth: true
             });
 
+            //end of slick
+
+            //是否登入判斷
+            var logined = window.localStorage;
+
+            if (logined.getItem("logined") == null)
+                $("#member").text("登入")
+
+            else {
+                $("#member").text("會員")
+            }
+
+            $("#member").click(function () {
+
+                if (logined.getItem("logined") == null)
+                    location.href = '#login';
+                else
+                    location.href = "#my";
+                $('#myName').val(logined['name']);
+                $('#mySex').val(logined['sex']);
+                $("#myDate").val(logined['date']);
+                $("#myEmail").val(logined['email']);
+                $('#myBalance').val(logined['balance']);
+
+
+
+            });
+            //登出
+            $("#btnLogout").click(function () {
+                logined.clear();
+                $("#member").text("登入")
+            });
+            //登入抓取資料
+            $("#btnLogin").click(function () {
+
+                var session = {};
+                var email = $('#logEmail').val();
+                var pwd = $('#logPwd').val();
+                var a = {
+                    "mode": "login",
+                    "login": [
+                                {
+                                    "email": email,
+                                    "pwd": pwd
+                                }
+                    ]
+                }
+                $.ajax({
+                    url: "http://localhost/TEST/mobile.ashx",
+                    type: "POST",
+                    dataType: "json",
+                    contentType: 'application/json; charset=utf-8',
+                    data: JSON.stringify(a),
+                    success: function (paa) {
+                        if (paa.message == null) {
+                            session = paa;
+                            session.islogined = true;
+                            logined.setItem("name", session.name);
+                            logined.setItem('sex', session.sex);
+                            logined.setItem('balance', session.balance);
+                            logined.setItem('date', session.date);
+                            logined.setItem('email', session.email);
+                            logined.setItem("logined", 'true');
+                            $("#member").text("會員");
+                            location.href = '#main';
+                        }
+
+                        else {
+                            alert(paa.message);
+                            $("#logEmail").val("");
+                            $("#logPwd").val('');
+                        }
+                    },
+                    error: function () { alert('失敗') }
+                });
+            });
+
+            $("#editok").click(function () {
+
+                var pwd = $("#editpwd").val()
+                var email = logined.getItem('email');
+            });           
+        });
+
+        //Google Map for according county 24.1662731 , 120.7218959
+        function MapFunction(data) {
+            var latlng = new google.maps.LatLng(data.lat, data.lng);
+            var mapOptions = {
+                enableHighAccuracy:true,
+                zoom: 14, //初始放大倍數
+                center: latlng, //中心點所在位置
+                mapTypeId: google.maps.MapTypeId.ROADMAP //正常2D道路模式
+            };
+            var map = new google.maps.Map(
+                 document.getElementById("map_canvas"), mapOptions);
+            var marker = new google.maps.Marker({
+                position: latlng,
+                map: map,
+                title: data.name
+            });
+        }
+
+        var sel = $('select[id="list"]'); //指定要處理的特定元素物件名稱
+        sel.on('change', function () {
+            switch (true) {
+                case sel.val() == "台中市":
+                    var poststore = JSON.stringify(getstore = { "county": "台中市" });              
+                    $.ajax({
+                        type: "POST",
+                        url: "http://localhost/TEST/HandlerStore.ashx",
+                        data: poststore,
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                        success: function (data) {                          
+                            return MapFunction(data);
+                        },
+                        error: function (data) {
+                            alert("Fail" + data);
+                        }
+                    });
+                    break;
+                case sel.val() == "台北市":
+                    var poststore = JSON.stringify(getstore = { "county": "台北市" });
+                    $.ajax({
+                        type: "POST",
+                        url: "http://localhost/TEST/HandlerStore.ashx",
+                        data: poststore,
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                        success: function (data) {                            
+                            return MapFunction(data);                          
+                        },
+                        error: function (data) {
+                            alert("Fail" + data);
+                        }
+                    });
+                    break;
+                case sel.val() == "台南市":
+                    var poststore = JSON.stringify(getstore = { "county": "台南市" });
+                    $.ajax({
+                        type: "POST",
+                        url: "http://localhost/TEST/HandlerStore.ashx",
+                        data: poststore,
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                        success: function (data) {
+                            return MapFunction(data);
+                        },
+                        error: function (data) {
+                            alert("Fail" + data);
+                        }
+                    });
+                    break;
+            }
+        });
+        
 
     </script>
 
