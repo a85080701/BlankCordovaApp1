@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" type="text/css" href="slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="slick/slick-theme.css">
+    <script src="scripts/jquery-1.11.3.min.js"></script>
+    <script src="scripts/jquery.mobile-1.4.5.min.js"></script>
+    <script src="slick/slick.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpOXj-mG3Zq0d69SdWtJ_VjVDlrGAZMvQ"></script>
+    <script src="scripts/jquery.ui.map.min.js"></script>
+    <title></title>
+</head>
+<body>
+    <script>
+       
+    </script>
+
+    <div data-role="page" id="Registered">
+        <div data-role="header" data-position="fixed">
+            <a data-rel="back" data-role="button" data-icon="arrow-l">上一頁</a>
+            <h1>會員註冊</h1>
+        </div>
+        <div class="ui-content">
+            <form method="post" action="#">
+                <div class="ui-field-contain">
+                    <label for="name">姓名：</label><input type="text" id="regName">
+                </div>
+                <div class="ui-field-contain">
+                    <label for="email">信箱：</label><input type="email" id="regMmail">
+                </div>
+                <div class="ui-field-contain">
+                    <label for="pwd">密碼：</label><input type="password" id="regPwd">
+                </div>
+                <div class="ui-field-contain">
+                    性別：
+                    <label for="male"><input id="regMale" type="radio" name="sex" checked />男</label>
+                    <label for="female"><input id="regFemale" type="radio" name="sex" />女</label>
+                </div>
+                <div class="ui-field-contain">
+                    <label for="date">生日：</label><input type="date" id="regDate">
+                </div>
+                <div>
+                    <a href="#" data-role="button" data-inline="true" id="btnReg">確認</a>
+                </div>
+            </form>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar" data-mini="true">
+                <ul>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-home ui-btn-icon-top" href="Main.html">首頁</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-bullets ui-btn-icon-top" href="Order.html">點餐</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-heart ui-btn-icon-top" href="Offer.html">優惠</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-location ui-btn-icon-top" href="Stores.html">門市</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+  
+
+</body>
+</html>
