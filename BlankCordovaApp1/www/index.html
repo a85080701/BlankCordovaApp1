@@ -644,7 +644,7 @@
 
             <div>
                 <a href="#edit" data-role="button" data-inline="true" id="btnEdit">修改資料</a>
-                <a href="#editpwd" data-role="button" data-inline="true">修改密碼</a>
+                <a href="#changepwd" data-role="button" data-inline="true">修改密碼</a>
                 <a href="#main" data-role="button" data-inline="true" id="btnLogout">登出</a>
             </div>
         </div>
@@ -716,11 +716,45 @@
         </div>
     </div>
     <!-- End of edit page -->
-
+        
     <!-- Start of editPwd page -->
     <div data-role="page" id="changepwd">
-        你啊罵很胖
+        <div data-role="header" data-position="fixed">
+            <a data-role="button" data-rel="back" data-icon="arrow-l">上一頁</a>
+            <h1>密碼修改</h1>
+            <a href="#main" data-role="button" data-icon="home">首頁</a>
+        </div>
+        <div>
+            <label for="editPwdold">舊密碼:<input type="password" id="editPwdold" /></label>
+        </div>
+        <div>
+            <label for="">新密碼:<input type="password" id="editPwdnew1" /></label>
+        </div>
+        <div>
+            <label for="editPwdnew2">確認新密碼:<input type="password" id="editPwdnew2" /></label>
+        </div>
+        <div>
+            <label><a href="#main" data-role="button" data-inline="true" id="editPwdOK">確認</a></label>
+        </div>
 
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar" data-mini="true">
+                <ul>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-home ui-btn-icon-top" href="#main">首頁</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-bullets ui-btn-icon-top" href="#order">點餐</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-heart ui-btn-icon-top" href="#offer">優惠</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-location ui-btn-icon-top" href="#stores">門市</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
     <!-- End of editPwd page -->
 
@@ -885,10 +919,18 @@
                         contentType: 'application/json; charset=utf-8',
                         data: JSON.stringify(a),
                         success: function (data) {
-                            alert('成功')
-                            logined.setItem('name', data.name);
-                            logined.setItem('sex', data.sex);
-                            logined.setItem('date', data.date);
+                            if (data.message == null)
+                            {
+                                alert('成功')
+                                logined.setItem('name', data.name);
+                                logined.setItem('sex', data.sex);
+                                logined.setItem('date', data.date);
+                            }
+                            else
+                            {
+                                alert("密碼錯誤");
+                            }
+
 
                         },
                         error: function(){alert('失敗')}
