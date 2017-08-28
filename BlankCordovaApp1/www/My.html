@@ -16,7 +16,7 @@
 <body>
     <script>
         $(document).on('ready', function () {
-
+            var logined = window.localStorage;
             $('#myName').val(logined['name']);
             $('#mySex').val(logined['sex']);
             $("#myDate").val(logined['date']);
