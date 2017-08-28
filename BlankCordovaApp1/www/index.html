@@ -57,6 +57,29 @@
             });
         });
         //end of slick
+
+        //是否登入判斷
+        var logined = window.localStorage;
+
+        if (logined.getItem("logined") == null)
+            $("#member").text("登入")
+
+        else {
+            $("#member").text("會員")
+        }
+        //右上點擊時判斷進入會員資訊OR登入葉面
+        $("#member").click(function () {
+
+            if (logined.getItem("logined") == null)
+                location.href = '#login';
+            else
+                location.href = "#my";
+            $('#myName').val(logined['name']);
+            $('#mySex').val(logined['sex']);
+            $("#myDate").val(logined['date']);
+            $("#myEmail").val(logined['email']);
+            $('#myBalance').val(logined['balance']);
+        });
     </script>
 
     <div data-role="page" id="index">
