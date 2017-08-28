@@ -12,7 +12,15 @@
         },
         "cordova-plugin-dialogs": {
             "PACKAGE_NAME": "io.cordova.myappdf42a7"
+        },
+        "cordova-plugin-geolocation": {
+            "GEOLOCATION_USAGE_DESCRIPTION": " ",
+            "PACKAGE_NAME": "io.cordova.myappdf42a7"
         }
     },
-    "dependent_plugins": {}
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "io.cordova.myappdf42a7"
+        }
+    }
 }
