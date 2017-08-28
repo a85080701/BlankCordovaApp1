@@ -14,8 +14,59 @@
     <title></title>
 </head>
 <body>
+   
+
+    <div data-role="page" id="AccordingCounty">
+        <div data-role="header" data-position="fixed">
+            <h1>門市</h1>
+            <div data-role="navbar" data-mini="true">
+                <ul>
+                    <li>
+                        <a class="ui-btn ui-corner-all ui-btn-active ui-state-persist" data-transition="none" href="AccordingCounty.html">依縣市</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all " data-transition="none" href="AroundStore.html">最近門市</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div data-role="content">
+            <form id="form1" runat="server">
+                <label>請選擇縣市</label>
+                <select id="list">
+                    <option></option>
+                    <option>台中市</option>
+                    <option>台北市</option>
+                    <option>台南市</option>
+                </select>
+                <div id="map_canvas" style="height:300px; width:100%"></div>
+            </form>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar" data-mini="true">
+                <ul>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-home ui-btn-icon-top " href="Main.html">首頁</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-bullets ui-btn-icon-top" href="Order.html">點餐</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-heart ui-btn-icon-top" href="Offer.html">優惠</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-location ui-btn-icon-top ui-btn-active ui-state-persist" href="Stores.html">門市</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+  
     <script>
+        
         $(document).on('ready', function () {
+            alert('123');
+        });
             //Google Map for according county 24.1662731 , 120.7218959
             function MapFunction(data) {
                 var latlng = new google.maps.LatLng(data.lat, data.lng);
@@ -37,8 +88,11 @@
 
             var sel = $('select[id="list"]'); //指定要處理的特定元素物件名稱
             sel.on('change', function () {
+                alert($)
                 switch (true) {
+                    
                     case sel.val() == "台中市":
+                        
                         var poststore = JSON.stringify(getstore = { "county": "台中市" });
                         $.ajax({
                             type: "POST",
@@ -89,55 +143,7 @@
                         break;
                 }
             });
-        });
+
     </script>
-
-    <div data-role="page" id="AccordingCounty">
-        <div data-role="header" data-position="fixed">
-            <h1>門市</h1>
-            <div data-role="navbar" data-mini="true">
-                <ul>
-                    <li>
-                        <a class="ui-btn ui-corner-all ui-btn-active ui-state-persist" data-transition="none" href="AccordingCounty.html">依縣市</a>
-                    </li>
-                    <li>
-                        <a class="ui-btn ui-corner-all " data-transition="none" href="AroundStore.html">最近門市</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div data-role="content">
-            <form id="form1" runat="server">
-                <label>請選擇縣市</label>
-                <select id="list">
-                    <option></option>
-                    <option>台中市</option>
-                    <option>台北市</option>
-                    <option>台南市</option>
-                </select>
-                <div id="map_canvas" style="height:300px; width:100%"></div>
-            </form>
-        </div>
-        <div data-role="footer" data-position="fixed">
-            <div data-role="navbar" data-mini="true">
-                <ul>
-                    <li>
-                        <a class="ui-btn ui-corner-all  ui-icon-home ui-btn-icon-top " href="Main.html">首頁</a>
-                    </li>
-                    <li>
-                        <a class="ui-btn ui-corner-all  ui-icon-bullets ui-btn-icon-top" href="Order.html">點餐</a>
-                    </li>
-                    <li>
-                        <a class="ui-btn ui-corner-all  ui-icon-heart ui-btn-icon-top" href="Offer.html">優惠</a>
-                    </li>
-                    <li>
-                        <a class="ui-btn ui-corner-all  ui-icon-location ui-btn-icon-top ui-btn-active ui-state-persist" href="Stores.html">門市</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-  
-
 </body>
 </html>
