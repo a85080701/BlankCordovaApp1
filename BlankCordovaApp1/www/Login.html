@@ -16,29 +16,51 @@
 <body>
     <script>
         $(document).on('ready', function () {
-        //是否登入判斷
-        var logined = window.localStorage;
+            var logined = window.localStorage;
+            //登入抓取資料
+            $("#btnLogin").click(function () {
 
-        if (logined.getItem("logined") == null)
-            $("#member").text("登入")
 
-        else {
-            $("#member").text("會員")
-        }
+            var session = {};
+            var email = $('#logEmail').val();
+            var pwd = $('#logPwd').val();
+            var a = {
+                "mode": "login",
+                "login": [
+                            {
+                                "email": email,
+                                "pwd": pwd
+                            }
+                ]
+            }
+            $.ajax({
+                url: "http://localhost/TEST/mobile.ashx",
+                type: "POST",
+                dataType: "json",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(a),
+                success: function (paa) {
+                    if (paa.message == null) {
+                        session = paa;
+                        session.islogined = true;
+                        logined.setItem("name", session.name);
+                        logined.setItem('sex', session.sex);
+                        logined.setItem('balance', session.balance);
+                        logined.setItem('date', session.date);
+                        logined.setItem('email', session.email);
+                        logined.setItem("logined", 'true');
+                        location.href = 'main.html';
+                    }
 
-        $("#member").click(function () {
-
-            if (logined.getItem("logined") == null)
-                location.href = '#login';
-            else
-                location.href = "#my";
-            $('#myName').val(logined['name']);
-            $('#mySex').val(logined['sex']);
-            $("#myDate").val(logined['date']);
-            $("#myEmail").val(logined['email']);
-            $('#myBalance').val(logined['balance']);
+                    else {
+                        alert(paa.message);
+                        $("#logEmail").val("");
+                        $("#logPwd").val('');
+                    }
+                },
+                error: function () { alert('失敗') }
+            });
         });
-
 
         });
     </script>
