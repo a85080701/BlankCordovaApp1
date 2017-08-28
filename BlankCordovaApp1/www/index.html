@@ -34,8 +34,11 @@
 </head>
 <body>
     <script>
+        
         $(document).on('ready', function () {
             //start of slick
+            var logined = window.localStorage;
+            console.dir("asd")
             $(".regular").slick({
                 dots: true,
                 infinite: true,
@@ -55,9 +58,10 @@
                 infinite: true,
                 variableWidth: true
             });
+
             //end of slick
             //是否登入判斷
-            var logined = window.localStorage;
+
 
 
             if (logined.getItem("logined") == null) {
@@ -73,11 +77,20 @@
             $("#member").click(function () {
 
                 if (logined.getItem("logined") == null)
-                    location.href = 'login.html';
+                {
+                    location.href = "login.html";
+                    console.dir("登入前")
+                }
+                    
                 else
+                {
                     location.href = "My.html";
-
+                    console.dir("登入後")
+                }
+                    
+                
             });
+           
         });
 
 
