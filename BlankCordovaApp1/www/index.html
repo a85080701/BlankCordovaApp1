@@ -11,6 +11,14 @@
     <script src="slick/slick.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpOXj-mG3Zq0d69SdWtJ_VjVDlrGAZMvQ"></script>
     <script src="scripts/jquery.ui.map.min.js"></script>
+    <script>
+        $(document).bind("mobileinit", function () {
+            $.extend($.mobile, {
+                defaultPageTransition: 'none'
+            });
+            alert("paa")
+        });
+    </script>
     <title></title>
     <style type="text/css">
         .slider {
@@ -34,15 +42,10 @@
 </head>
 <body>
     <script>
-        $(document).bind("mobileinit", function () {
-            $.mobile.ajaxEnabled = false;
-        });
-        $(document).on("click","index.html",function(){alert("paa")})
         
         $(document).on('ready', function () {
             //start of slick
             var logined = window.localStorage;
-            console.dir("asd");
           
                 $(".regular").slick({
                     dots: true,
