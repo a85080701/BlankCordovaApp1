@@ -11,8 +11,14 @@
     <script src="slick/slick.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpOXj-mG3Zq0d69SdWtJ_VjVDlrGAZMvQ"></script>
     <script src="scripts/jquery.ui.map.min.js"></script>
-    <script src="scripts/Allscript.js"></script>
-  
+    <script>
+        $(document).bind("mobileinit", function () {
+            $.extend($.mobile, {
+                defaultPageTransition: 'none'
+            });
+            alert("paa")
+        });
+    </script>
     <title></title>
     <style type="text/css">
         .slider {
@@ -35,6 +41,7 @@
     </style>
 </head>
 <body>
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
     <script>
@@ -62,6 +69,38 @@
             //end of slick
             //是否登入判斷
             var logined = window.localStorage;
+=======
+    <script>
+        
+        $(document).on('ready', function () {
+            //start of slick
+            var logined = window.localStorage;
+          
+                $(".regular").slick({
+                    dots: true,
+                    infinite: true,
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    autoplay: true
+                });
+                $(".center").slick({
+                    dots: true,
+                    infinite: true,
+                    centerMode: true,
+                    slidesToShow: 3,
+                    slidesToScroll: 3
+                });
+                $(".variable").slick({
+                    dots: true,
+                    infinite: true,
+                    variableWidth: true
+            });
+
+
+            //end of slick
+            //是否登入判斷
+
+>>>>>>> parent of 4440c63... 暫存
 
 
             if (logined.getItem("logined") == null) {
@@ -77,18 +116,38 @@
             $("#member").click(function () {
 
                 if (logined.getItem("logined") == null)
+<<<<<<< HEAD
                     location.href = 'login.html';
                 else
                     location.href = "My.html";
 
             });
+=======
+                {
+                    location.href = "login.html";
+                    console.dir("登入前")
+                }
+                    
+                else
+                {
+                    location.href = "My.html";
+                    console.dir("登入後")
+                }
+                    
+                
+            });
+           
+>>>>>>> parent of 4440c63... 暫存
         });
 
 
 
 
     </script>
+<<<<<<< HEAD
 >>>>>>> parent of 250c628... rel="external"
+=======
+>>>>>>> parent of 4440c63... 暫存
 
     <div data-role="page" id="index">
         <div data-role="header" data-position="fixed">
