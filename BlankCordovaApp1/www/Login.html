@@ -11,59 +11,13 @@
     <script src="slick/slick.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpOXj-mG3Zq0d69SdWtJ_VjVDlrGAZMvQ"></script>
     <script src="scripts/jquery.ui.map.min.js"></script>
+    <script src="scripts/Allscript.js"></script>
     <title></title>
 </head>
 <body>
-    <script>
-        $(document).on('ready', function () {
-            var logined = window.localStorage;
-            //登入抓取資料
-            $("#btnLogin").click(function () {
-
-
-            var session = {};
-            var email = $('#logEmail').val();
-            var pwd = $('#logPwd').val();
-            var a = {
-                "mode": "login",
-                "login": [
-                            {
-                                "email": email,
-                                "pwd": pwd
-                            }
-                ]
-            }
-            $.ajax({
-                url: "http://localhost/TEST/mobile.ashx",
-                type: "POST",
-                dataType: "json",
-                contentType: 'application/json; charset=utf-8',
-                data: JSON.stringify(a),
-                success: function (paa) {
-                    if (paa.message == null) {
-                        session = paa;
-                        session.islogined = true;
-                        logined.setItem("name", session.name);
-                        logined.setItem('sex', session.sex);
-                        logined.setItem('balance', session.balance);
-                        logined.setItem('date', session.date);
-                        logined.setItem('email', session.email);
-                        logined.setItem("logined", 'true');
-                        location.href = 'index.html';
-                    }
-
-                    else {
-                        alert(paa.message);
-                        $("#logEmail").val("");
-                        $("#logPwd").val('');
-                    }
-                },
-                error: function () { alert('失敗') }
-            });
-        });
-
-        });
-    </script>
+   <script>
+  
+   </script>
 
     <div data-role="page" id="Login">
         <div data-role="header">
@@ -89,7 +43,7 @@
             <div data-role="navbar" data-mini="true">
                 <ul>
                     <li>
-                        <a class="ui-btn ui-corner-all  ui-icon-home ui-btn-icon-top " href="Main.html">首頁</a>
+                        <a class="ui-btn ui-corner-all  ui-icon-home ui-btn-icon-top " href="index.html">首頁</a>
                     </li>
                     <li>
                         <a class="ui-btn ui-corner-all  ui-icon-bullets ui-btn-icon-top" href="Order.html">點餐</a>

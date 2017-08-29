@@ -11,14 +11,8 @@
     <script src="slick/slick.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpOXj-mG3Zq0d69SdWtJ_VjVDlrGAZMvQ"></script>
     <script src="scripts/jquery.ui.map.min.js"></script>
-    <script>
-        $(document).bind("mobileinit", function () {
-            $.extend($.mobile, {
-                defaultPageTransition: 'none'
-            });
-            alert("paa")
-        });
-    </script>
+    <script src="scripts/Allscript.js"></script>
+  
     <title></title>
     <style type="text/css">
         .slider {
@@ -41,71 +35,6 @@
     </style>
 </head>
 <body>
-    <script>
-        
-        $(document).on('ready', function () {
-            //start of slick
-            var logined = window.localStorage;
-          
-                $(".regular").slick({
-                    dots: true,
-                    infinite: true,
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    autoplay: true
-                });
-                $(".center").slick({
-                    dots: true,
-                    infinite: true,
-                    centerMode: true,
-                    slidesToShow: 3,
-                    slidesToScroll: 3
-                });
-                $(".variable").slick({
-                    dots: true,
-                    infinite: true,
-                    variableWidth: true
-            });
-
-
-            //end of slick
-            //是否登入判斷
-
-
-
-            if (logined.getItem("logined") == null) {
-                $("#member").text("登入");
-            }
-
-
-
-            else {
-                $("#member").text("會員");
-            }
-            //右上點擊時判斷進入會員資訊OR登入葉面
-            $("#member").click(function () {
-
-                if (logined.getItem("logined") == null)
-                {
-                    location.href = "login.html";
-                    console.dir("登入前")
-                }
-                    
-                else
-                {
-                    location.href = "My.html";
-                    console.dir("登入後")
-                }
-                    
-                
-            });
-           
-        });
-
-
-
-
-    </script>
 
     <div data-role="page" id="index">
         <div data-role="header" data-position="fixed">
