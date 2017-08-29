@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css">
     <link rel="stylesheet" type="text/css" href="slick/slick.css">
@@ -11,8 +11,6 @@
     <script src="slick/slick.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpOXj-mG3Zq0d69SdWtJ_VjVDlrGAZMvQ"></script>
     <script src="scripts/jquery.ui.map.min.js"></script>
-    <script src="scripts/Allscript.js"></script>
-  
     <title></title>
     <style type="text/css">
         .slider {
@@ -35,8 +33,6 @@
     </style>
 </head>
 <body>
-<<<<<<< HEAD
-=======
     <script>
         $(document).on('ready', function () {
             //start of slick
@@ -59,42 +55,15 @@
                 infinite: true,
                 variableWidth: true
             });
-            //end of slick
-            //是否登入判斷
-            var logined = window.localStorage;
-
-
-            if (logined.getItem("logined") == null) {
-                $("#member").text("登入");
-            }
-
-
-
-            else {
-                $("#member").text("會員");
-            }
-            //右上點擊時判斷進入會員資訊OR登入葉面
-            $("#member").click(function () {
-
-                if (logined.getItem("logined") == null)
-                    location.href = 'login.html';
-                else
-                    location.href = "My.html";
-
-            });
         });
-
-
-
-
+        //end of slick
     </script>
->>>>>>> parent of 250c628... rel="external"
 
-    <div data-role="page" id="index">
+    <div data-role="page" id="Main">
         <div data-role="header" data-position="fixed">
             <h1>有料餐點</h1>
             <a class="ui-btn ui-corner-all  ui-icon-mail ui-btn-icon-right" href="Message.html">訊息</a>
-            <a class="ui-btn ui-corner-all  ui-icon-user ui-btn-icon-left" data-transition="slide" id="member">會員</a>
+            <a class="ui-btn ui-corner-all  ui-icon-user ui-btn-icon-left" data-transition="slide" href="Login.html">會員</a>
         </div>
         <!-- 輪播 -->
         <div role="main" class="ui-content">
@@ -138,7 +107,7 @@
             </div>
         </div>
     </div>
-
+  
 
 </body>
 </html>
