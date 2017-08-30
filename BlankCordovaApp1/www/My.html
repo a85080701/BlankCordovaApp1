@@ -6,6 +6,12 @@
     <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css">
     <link rel="stylesheet" type="text/css" href="slick/slick.css">
     <link rel="stylesheet" type="text/css" href="slick/slick-theme.css">
+    <script src="scripts/jquery-1.11.3.min.js"></script>
+    <script>
+        $(document).bind("mobileinit", function () {
+            $.mobile.ajaxEnabled = false;
+        });
+    </script>
     <script src="scripts/jquery.mobile-1.4.5.min.js"></script>
     <script src="slick/slick.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpOXj-mG3Zq0d69SdWtJ_VjVDlrGAZMvQ"></script>
