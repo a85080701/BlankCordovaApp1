@@ -83,31 +83,26 @@
             //消防分局資料陣列
             var branches = [];
             //取得分局資料(含經緯座標)，存為物作陣列
-            $.ajax({
-                type: "POST",
-                url: "http://localhost/TEST/HandlerStore.ashx",
-                dataType: "json",
-                contentType: "application/json; charset=utf-8",
-                success: function (data) {
-                   	var lines = list.replace(/\r/g, "").split('\n');
+            var list =
+                "台中分布-政高1,24.1710494,120.7177507\n" +
+                "台中分布-政高2,24.1653863,120.7107635\n" +
+                "台中分布-政高3,24.1710494,120.7177507\n" +
+                "台中分布-政高4,24.1710494,120.7177507\n" +
+                "台中分布-政高5,24.1638861,120.7143468";             
+			var lines = list.replace(/\r/g, "").split('\n');
 			//lines[i]格式如下:
-            //台中分布-中政高,台中市西屯區軍福七路133號,24.1657369,120.7229968
+			//文山中隊-木柵分隊,(02)29391604,文山區木柵路2段200號,24.9890353,121.5630845
 			for (var i = 0; i < lines.length; i++) {
 				var parts = lines[i].split(',');
 				branches.push({
-					name: data.name,				
-					addr: data.address,
+					name: parts[0],
 					latlng: new google.maps.LatLng(
-								parseFloat(data.lat), parseFloat(data.lng)),
+								parseFloat(parts[1]), parseFloat(parts[2])),
 					dist: 0
 				});
 			}
 			getGeolocation();
-                },
-                error: function (data) {
-                    alert("Fail" + data);
-                }
-            });
+
             //取得使用者目前位罝
             function getGeolocation() {
                 if (navigator && navigator.geolocation) {
@@ -136,7 +131,8 @@
                 //設定地圖參數
                 var mapOptions = {
                     center: curLatLng,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP //正常2D道路模式
+                    mapTypeId: google.maps.MapTypeId.ROADMAP,
+                    enableHighAccuracy: true//正常2D道路模式
                 };
                 //在指定DOM元素中嵌入地圖
                 var map = new google.maps.Map(
