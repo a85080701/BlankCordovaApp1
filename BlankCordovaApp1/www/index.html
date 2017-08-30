@@ -11,8 +11,6 @@
     <script src="slick/slick.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpOXj-mG3Zq0d69SdWtJ_VjVDlrGAZMvQ"></script>
     <script src="scripts/jquery.ui.map.min.js"></script>
-
-
     <style type="text/css">
         .slider {
             width: 90%;
@@ -34,31 +32,32 @@
     </style>
 </head>
 <body>
-    <script>
-        $(document).on("ready", function () {
-            $(".regular").slick({
-                dots: true,
-                infinite: true,
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                autoplay: true
-            });
-            $(".center").slick({
-                dots: true,
-                infinite: true,
-                centerMode: true,
-                slidesToShow: 3,
-                slidesToScroll: 3
-            });
-            $(".variable").slick({
-                dots: true,
-                infinite: true,
-                variableWidth: true
+    <script>       
+        $(document).on('ready', function () {
+            //start of slick
+            var logined = window.localStorage;
+          
+                $(".regular").slick({
+                    dots: true,
+                    infinite: true,
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    autoplay: true
+                });
+                $(".center").slick({
+                    dots: true,
+                    infinite: true,
+                    centerMode: true,
+                    slidesToShow: 3,
+                    slidesToScroll: 3
+                });
+                $(".variable").slick({
+                    dots: true,
+                    infinite: true,
+                    variableWidth: true
             });
             //end of slick
-
             //是否登入判斷
-            var logined = window.localStorage;
             if (logined.getItem("logined") == null) {
                 $("#member").text("登入");
             }
@@ -71,12 +70,12 @@
                 if (logined.getItem("logined") == null)
                     location.href = 'login.html';
                 else
-                    location.href = "My.html";
-            });
+                    location.href = "My.html";                          
+            });          
         });
-    </script>
-       
-    <div data-role="page" id="index">     
+    </script>      
+
+    <div data-role="page" id="index">
         <div data-role="header" data-position="fixed">
             <h1>有料餐點</h1>
             <a class="ui-btn ui-corner-all  ui-icon-mail ui-btn-icon-right" href="Message.html">訊息</a>
