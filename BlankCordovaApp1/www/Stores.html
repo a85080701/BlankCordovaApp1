@@ -18,25 +18,307 @@
     <script src="scripts/jquery.ui.map.min.js"></script>
     <title></title>
 </head>
-<body>  
-    <div data-role="page" id="stores">
-        <div data-role="header" data-position="fixed">
+<body>
+    <!--AccordingCounty-->
+    <script>
+        //Google Map for according county 24.1662731 , 120.7218959       
+        $(document).on("ready", function () {
+        jQuery.extend({
+            MapFunction: function (data) {
+                var latlng = new google.maps.LatLng(data.lat, data.lng);
+                var mapOptions = {
+                    enableHighAccuracy: true,
+                    zoom: 14, //初始放大倍數
+                    center: latlng, //中心點所在位置
+                    mapTypeId: google.maps.MapTypeId.ROADMAP //正常2D道路模式
+                };
+                var map = new google.maps.Map(
+                     document.getElementById("map_According"), mapOptions);
+                var marker = new google.maps.Marker({
+                    position: latlng,
+                    map: map,
+                    title: data.name
+                });
+            }
+        });
+        var sel = $('select[id="list"]'); //指定要處理的特定元素物件名稱
+            sel.on('change', function () {
+                switch (true) {
+                    case sel.val() == "台中市":
+                        var poststore = JSON.stringify(getstore = { "county": "台中市" });
+                        $.ajax({
+                            type: "POST",
+                            url: "http://localhost/TEST/HandlerStore.ashx",
+                            data: poststore,
+                            dataType: "json",
+                            contentType: "application/json; charset=utf-8",
+                            success: function (data) {
+                                $.MapFunction(data);
+                            },
+                            error: function (data) {
+                                alert("Fail" + data);
+                            }
+                        });
+                        break;
+                    case sel.val() == "台北市":
+                        var poststore = JSON.stringify(getstore = { "county": "台北市" });
+                        $.ajax({
+                            type: "POST",
+                            url: "http://localhost/TEST/HandlerStore.ashx",
+                            data: poststore,
+                            dataType: "json",
+                            contentType: "application/json; charset=utf-8",
+                            success: function (data) {
+                                $.MapFunction(data);
+                            },
+                            error: function (data) {
+                                alert("Fail" + data);
+                            }
+                        });
+                        break;
+                    case sel.val() == "台南市":
+                        var poststore = JSON.stringify(getstore = { "county": "台南市" });
+                        $.ajax({
+                            type: "POST",
+                            url: "http://localhost/TEST/HandlerStore.ashx",
+                            data: poststore,
+                            dataType: "json",
+                            contentType: "application/json; charset=utf-8",
+                            success: function (data) {
+                                $.MapFunction(data);
+                            },
+                            error: function (data) {
+                                alert("Fail" + data);
+                            }
+                        });
+                        break;
+                }
+            });
+        
+ 
+    //AroundStore
+   
+        $(function () {
+           //利用canvas產生一個內含文字的圖檔
+            function createMarkerIcon(text, opt) {
+                //定義預設參數
+                var defaultOptions = {
+                    fontStyle: "normal", //normal, bold, italic
+                    fontName: "Arial",
+                    fontSize: 12, //以Pixel為單位
+                    bgColor: "darkblue",
+                    fgColor: "white",
+                    padding: 4,
+                    arrowHeight: 6 //下方尖角高度
+                };
+                options = $.extend(defaultOptions, opt);
+                //建立Canvas，開始幹活兒
+                var canvas = document.createElement("canvas"),
+                    context = canvas.getContext("2d");
+                //評估文字尺寸
+                var font = options.fontStyle + " " + options.fontSize + "px " +
+                           options.fontName;
+                context.font = font;
+                var metrics = context.measureText(text);
+                //文字大小加上padding作為外部尺寸
+                var w = metrics.width + options.padding * 2;
+                //高度以Font的大小為準
+                var h = options.fontSize + options.padding * 2 +
+                        options.arrowHeight;
+                canvas.width = w;
+                canvas.height = h;
+                //邊框及背景
+                context.beginPath();
+                context.rect(0, 0, w, h - options.arrowHeight);
+                context.fillStyle = options.bgColor;
+                context.fill();
+                //畫出下方尖角
+                context.beginPath();
+                var x = w / 2, y = h, arwSz = options.arrowHeight;
+                context.moveTo(x, y);
+                context.lineTo(x - arwSz, y - arwSz);
+                context.lineTo(x + arwSz, y - arwSz);
+                context.lineTo(x, y);
+                context.fill();
+                //印出文字
+                context.textAlign = "center";
+                context.fillStyle = options.fgColor;
+                context.font = font;
+                context.fillText(text,
+                    w / 2,
+                    (h - options.arrowHeight) / 2 + options.padding);
+                //傳回DataURI字串
+                return canvas.toDataURL();
+            }
+
+
+
+            //計算兩個經緯座標間的距離(Haversine公式)
+            function distHaversine(p1, p2) {
+                var rad = function (x) { return x * Math.PI / 180; }
+                var R = 6371; // earth's mean radius in km
+                var dLat = rad(p2.lat() - p1.lat());
+                var dLong = rad(p2.lng() - p1.lng());
+                var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                        Math.cos(rad(p1.lat())) * Math.cos(rad(p2.lat()))
+                        * Math.sin(dLong / 2) * Math.sin(dLong / 2);
+                var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+                var d = R * c;
+                return parseFloat(d.toFixed(3));
+            }
+            //消防分局資料陣列
+            var branches = [];
+            //取得分局資料(含經緯座標)，存為物作陣列
+            var list =
+                "台中分布-政高1,24.1710494,120.7177507\n" +
+                "台中分布-政高2,24.1653863,120.7107635\n" +
+                "台中分布-政高3,24.1710494,120.7177507\n" +
+                "台中分布-政高4,24.1710494,120.7177507\n" +
+                "台中分布-政高5,24.1638861,120.7143468";
+			var lines = list.replace(/\r/g, "").split('\n');
+			//lines[i]格式如下:
+			//文山中隊-木柵分隊,(02)29391604,文山區木柵路2段200號,24.9890353,121.5630845
+			for (var i = 0; i < lines.length; i++) {
+				var parts = lines[i].split(',');
+				branches.push({
+					name: parts[0],
+					latlng: new google.maps.LatLng(
+								parseFloat(parts[1]), parseFloat(parts[2])),
+					dist: 0
+				});
+			}
+			getGeolocation();
+
+            //取得使用者目前位罝
+            function getGeolocation() {
+                if (navigator && navigator.geolocation) {
+                    //getCurrentPosition屬非同步執行，要另定函數解析結果
+                    navigator.geolocation.getCurrentPosition(parsePosition);
+                }
+            }
+            //解析getCurrentPosition傳回的結果
+            function parsePosition(pos) {
+                //標示點陣列
+                var markers = [];
+                //由pos.coords取出latitude及longitude
+                var curLatLng = new google.maps.LatLng(
+                        pos.coords.latitude, pos.coords.longitude);
+                //分別計算對所有Branch的距離
+                for (var i = 0; i < branches.length; i++) {
+                    var branch = branches[i];
+                    branch.distance = //計算兩個LatLng間的距離
+                            distHaversine(branch.latlng, curLatLng);
+                }
+                //依距離進行排序
+                branches.sort(function (a, b) {
+                    if (a.distance == b.distance) return 0;
+                    return (a.distance > b.distance) ? 1 : -1;
+                });
+                //設定地圖參數
+                var mapOptions = {
+                    center: curLatLng,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP,
+                    enableHighAccuracy: true//正常2D道路模式
+                };
+                //在指定DOM元素中嵌入地圖
+                var map = new google.maps.Map(
+                        document.getElementById("map_Around"), mapOptions);
+                //使用LatLngBounds統計檢視範圍
+                var bounds = new google.maps.LatLngBounds();
+                //加入使用者所在位置
+                var marker = new google.maps.Marker({
+                    position: curLatLng,
+                    title: "現在位置",
+                    //借用前篇文章介紹的Canvas.toDataURL()產生動態圖檔作為圖示
+                    icon: createMarkerIcon("現在位置"),
+                    map: map
+                });
+                var h = [];
+                //因為已排序過，故會依距離由近到遠加入Marker
+                for (var i = 0; i < branches.length; i++) {
+                    var b = branches[i];
+                    //距離最近的前五名加入檢視範圍
+                    if (i < 5) bounds.extend(b.latlng);
+                    var marker = new google.maps.Marker({
+                        position: b.latlng,
+                        title: b.name, //以刻有分隊名稱的告示牌作為圖示
+                        icon: createMarkerIcon(b.name.split('-')[1],
+                                //距離較近的前五名為紅底，其餘為暗紅底
+                                { bgColor: i < 5 ? 'red' : 'darkred' }),
+                        map: map
+                    });
+                }
+                //調整檢視範圍
+                map.fitBounds(bounds);
+            }
+        });
+        });
+    </script>
+    <!--star AccordingCounty page-->
+    <div data-role="page" id="AccordingCounty">
+        <div data-role="header" data-position="fixed"  data-tap-toggle="false">
             <h1>門市</h1>
             <div data-role="navbar" data-mini="true">
                 <ul>
                     <li>
-                        <a class="ui-btn ui-corner-all" data-transition="none" href="AccordingCounty.html" data-ajax="false">依縣市</a>
+                        <a class="ui-btn ui-corner-all ui-btn-active ui-state-persist" data-transition="none" href="#AccordingCounty" >依縣市</a>
                     </li>
                     <li>
-                        <a class="ui-btn ui-corner-all " data-transition="none" href="AroundStore.html" data-ajax="false">最近門市</a>
+                        <a class="ui-btn ui-corner-all " data-transition="none" href="#AroundStore">最近門市</a>
                     </li>
                 </ul>
             </div>
         </div>
         <div data-role="content">
-           
+            <form id="form1" runat="server">
+                <label>請選擇縣市</label>
+                <select id="list">
+                    <option></option>
+                    <option>台中市</option>
+                    <option>台北市</option>
+                    <option>台南市</option>
+                </select>
+                <div id="map_According" style="height:300px; width:100%"></div>
+            </form>           
         </div>
-        <div data-role="footer" data-position="fixed">
+        <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+            <div data-role="navbar" data-mini="true">
+                <ul>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-home ui-btn-icon-top " href="index.html">首頁</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-bullets ui-btn-icon-top" href="Order.html">點餐</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-heart ui-btn-icon-top" href="Offer.html">優惠</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-location ui-btn-icon-top ui-btn-active ui-state-persist" href="Stores.html" >門市</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--star AroundStore page-->
+    <div data-role="page" id="AroundStore">
+        <div data-role="header" data-position="fixed" data-tap-toggle="false">
+            <h1>門市</h1>
+            <div data-role="navbar" data-mini="true">
+                <ul>
+                    <li>
+                        <a class="ui-btn ui-corner-all" data-transition="none" href="#AccordingCounty" >依縣市</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-btn-active ui-state-persist" data-transition="none" href="#AroundStore" >最近門市</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div data-role="content">
+            <div id="map_Around" style="height:300px; width:100%"></div>
+        </div>
+        <div data-role="footer" data-position="fixed" data-tap-toggle="false">
             <div data-role="navbar" data-mini="true">
                 <ul>
                     <li>
@@ -55,6 +337,5 @@
             </div>
         </div>
     </div>
-   
 </body>
 </html>

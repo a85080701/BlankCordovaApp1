@@ -14,8 +14,6 @@
     </script>
     <script src="scripts/jquery.mobile-1.4.5.min.js"></script>
     <script src="slick/slick.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpOXj-mG3Zq0d69SdWtJ_VjVDlrGAZMvQ"></script>
-    <script src="scripts/jquery.ui.map.min.js"></script>
     <style type="text/css">
         .slider {
             width: 90%;
@@ -62,6 +60,7 @@
                     variableWidth: true
             });
             //end of slick
+
             //是否登入判斷
             if (logined.getItem("logined") == null) {
                 $("#member").text("登入");
@@ -76,15 +75,15 @@
                     location.href = 'login.html';
                 else
                     location.href = "My.html";                          
-            });          
+            });
         });
     </script>      
-
+    <!--star index page-->
     <div data-role="page" id="index">
         <div data-role="header" data-position="fixed">
             <h1>有料餐點</h1>
-            <a class="ui-btn ui-corner-all  ui-icon-mail ui-btn-icon-right" href="Message.html">訊息</a>
-            <a class="ui-btn ui-corner-all  ui-icon-user ui-btn-icon-left" data-transition="slide" id="member">會員</a>
+            <a class="ui-btn ui-corner-all  ui-icon-mail ui-btn-icon-right" href="#Message">訊息</a>
+            <a class="ui-btn ui-corner-all  ui-icon-user ui-btn-icon-left" data-transition="slide" id="member" href="Member.html">會員</a>
         </div>
         <!-- 輪播 -->
         <div role="main" class="ui-content">
@@ -122,13 +121,40 @@
                         <a class="ui-btn ui-corner-all  ui-icon-heart ui-btn-icon-top" href="Offer.html">優惠</a>
                     </li>
                     <li>
-                        <a class="ui-btn ui-corner-all  ui-icon-location ui-btn-icon-top" href="Stores.html" data-ajax="false" >門市</a>
+                        <a class="ui-btn ui-corner-all  ui-icon-location ui-btn-icon-top" href="Stores.html">門市</a>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
 
-
+    <!--star Message page-->
+    <div data-role="page" id="Message">
+        <div data-role="header" data-position="fixed">
+            <a data-rel="back" data-role="button" data-icon="arrow-l">上一頁</a>
+            <h1>訊息</h1>
+        </div><!-- /header -->
+        <div role="main" class="ui-content">
+            message
+        </div><!-- /content -->
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar" data-mini="true">
+                <ul>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-home ui-btn-icon-top " href="index.html">首頁</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-bullets ui-btn-icon-top" href="Order.html">點餐</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-heart ui-btn-icon-top" href="Offer.html">優惠</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-location ui-btn-icon-top" href="Stores.html">門市</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

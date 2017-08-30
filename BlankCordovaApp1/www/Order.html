@@ -14,8 +14,6 @@
     </script>
     <script src="scripts/jquery.mobile-1.4.5.min.js"></script>
     <script src="slick/slick.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpOXj-mG3Zq0d69SdWtJ_VjVDlrGAZMvQ"></script>
-    <script src="scripts/jquery.ui.map.min.js"></script>
     <title></title>
 </head>
 <body>
@@ -30,13 +28,13 @@
             <div data-role="navbar" data-mini="true">
                 <ul>
                     <li>
-                        <a class="ui-btn ui-corner-all" data-transition="none" href="Coffee.html">咖啡</a>
+                        <a class="ui-btn ui-corner-all" data-transition="none" href="#Coffee">咖啡</a>
                     </li>
                     <li>
-                        <a class="ui-btn ui-corner-all " data-transition="none" href="Cake.html">蛋糕</a>
+                        <a class="ui-btn ui-corner-all " data-transition="none" href="#Cake">蛋糕</a>
                     </li>
                     <li>
-                        <a class="ui-btn ui-corner-all " data-transition="none" href="Bread.html">麵包</a>
+                        <a class="ui-btn ui-corner-all " data-transition="none" href="#Bread">麵包</a>
                     </li>
                 </ul>
             </div>
@@ -63,7 +61,186 @@
             </div>
         </div>
     </div>
-  
+  <!--start Coffee page-->
+    <div data-role="page" id="Coffee">
+        <div data-role="header" data-position="fixed">
+            <h1>咖啡</h1>
+            <a href="#ShoppingCar" data-icon="shop" data-iconpos="left">購物車</a>
+            <div data-role="navbar" data-mini="true">
+                <ul>
+                    <li>
+                        <a class="ui-btn ui-corner-all ui-btn-active ui-state-persist" data-transition="none" href="#Coffee">咖啡</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all " data-transition="none" href="#Cake">蛋糕</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all " data-transition="none" href="#Bread">麵包</a>
+                    </li>
+                </ul>
+            </div>
+        </div><!-- /header -->
+        <div role="main" class="ui-content">
+            <div class="ui-field-contain">
+                <label>美式咖啡</label><input id="" type="number" min="0" max="100" />
+            </div>
+            <div class="ui-field-contain">
+                <label>拿鐵咖啡</label><input id="" type="number" min="0" max="100" />
+            </div>
+            <div class="ui-field-contain">
+                <label>焦糖咖啡</label><input id="" type="number" min="0" max="100" />
+            </div>
+            <a data-role="button" data-inline="true" id="btnCoffeeCar">加入購物車</a>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar" data-mini="true">
+                <ul>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-home ui-btn-icon-top " href="index.html">首頁</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-bullets ui-btn-icon-top" href="Order.html">點餐</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-heart ui-btn-icon-top" href="Offer.html">優惠</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-location ui-btn-icon-top" href="Stores.html">門市</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--start Cake page-->
+    <div data-role="page" id="Cake">
+        <div data-role="header" data-position="fixed">
 
+            <h1>蛋糕</h1>
+            <a href="#ShoppingCar" data-icon="shop" data-iconpos="left">購物車</a>
+            <div data-role="navbar" data-mini="true">
+                <ul>
+                    <li>
+                        <a class="ui-btn ui-corner-all" data-transition="none" href="#Coffee">咖啡</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-btn-active ui-state-persist" data-transition="none" href="#Cake">蛋糕</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all " data-transition="none" href="#Bread">麵包</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div role="main" class="ui-content">
+            <div class="ui-field-contain">
+                <label>提拉米蘇</label><input id="" type="number" min="0" max="100" />
+            </div>
+            <div class="ui-field-contain">
+                <label>拿破崙</label><input id="" type="number" min="0" max="100" />
+            </div>
+            <div class="ui-field-contain">
+                <label>天使雪莓</label><input id="" type="number" min="0" max="100" />
+            </div>
+            <a data-role="button" data-inline="true" id="btnCakeCar">加入購物車</a>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar" data-mini="true">
+                <ul>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-home ui-btn-icon-top " href="index.html">首頁</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-bullets ui-btn-icon-top" href="Order.html">點餐</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-heart ui-btn-icon-top" href="Offer.html">優惠</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-location ui-btn-icon-top" href="Stores.html">門市</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--start Bread page-->
+    <div data-role="page" id="Bread">
+        <div data-role="header" data-position="fixed">
+
+            <h1>麵包</h1>
+            <a href="ShoppingCar.html" data-icon="shop" data-iconpos="left">購物車</a>
+            <div data-role="navbar" data-mini="true">
+                <ul>
+                    <li>
+                        <a class="ui-btn ui-corner-all " data-transition="none" href="#Coffee">咖啡</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all " data-transition="none" href="#Cake">蛋糕</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-btn-active ui-state-persist" data-transition="none" href="#Bread">麵包</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div role="main" class="ui-content">
+            <div class="ui-field-contain">
+                <label>肉鬆麵包</label><input id="" type="number" min="0" max="100" />
+            </div>
+            <div class="ui-field-contain">
+                <label>波羅麵包</label><input id="" type="number" min="0" max="100" />
+            </div>
+            <div class="ui-field-contain">
+                <label>小可頌</label><input id="" type="number" min="0" max="100" />
+            </div>
+            <a data-role="button" data-inline="true" data-iconpos="top" id="btnBreadCar">加入購物車</a>
+
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar" data-mini="true">
+                <ul>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-home ui-btn-icon-top " href="index.html">首頁</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-bullets ui-btn-icon-top" href="Order.html">點餐</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-heart ui-btn-icon-top" href="Offer.html">優惠</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-location ui-btn-icon-top" href="Stores.html">門市</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--start ShoppingCar page-->
+    <div data-role="page" id="ShoppingCar">
+        <div data-role="header" data-position="fixed">
+            <a data-rel="back" data-role="button" data-icon="arrow-l">上一頁</a>
+            <h1>購物車</h1>
+        </div>
+        <div role="main" class="ui-content">
+
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar" data-mini="true">
+                <ul>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-home ui-btn-icon-top " href="index.html">首頁</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-bullets ui-btn-icon-top" href="Order.html">點餐</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-heart ui-btn-icon-top" href="Offer.html">優惠</a>
+                    </li>
+                    <li>
+                        <a class="ui-btn ui-corner-all  ui-icon-location ui-btn-icon-top" href="Stores.html">門市</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
