@@ -11,7 +11,8 @@
     <script src="slick/slick.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpOXj-mG3Zq0d69SdWtJ_VjVDlrGAZMvQ"></script>
     <script src="scripts/jquery.ui.map.min.js"></script>
-    <title></title>
+
+
     <style type="text/css">
         .slider {
             width: 90%;
@@ -34,8 +35,7 @@
 </head>
 <body>
     <script>
-        $(document).on('ready', function () {
-            //start of slick
+        $(document).on("ready", function () {
             $(".regular").slick({
                 dots: true,
                 infinite: true,
@@ -56,16 +56,12 @@
                 variableWidth: true
             });
             //end of slick
+
             //是否登入判斷
             var logined = window.localStorage;
-
-
             if (logined.getItem("logined") == null) {
                 $("#member").text("登入");
             }
-
-
-
             else {
                 $("#member").text("會員");
             }
@@ -76,16 +72,11 @@
                     location.href = 'login.html';
                 else
                     location.href = "My.html";
-
             });
         });
-
-
-
-
     </script>
-
-    <div data-role="page" id="index">
+       
+    <div data-role="page" id="index">     
         <div data-role="header" data-position="fixed">
             <h1>有料餐點</h1>
             <a class="ui-btn ui-corner-all  ui-icon-mail ui-btn-icon-right" href="Message.html">訊息</a>
@@ -127,7 +118,7 @@
                         <a class="ui-btn ui-corner-all  ui-icon-heart ui-btn-icon-top" href="Offer.html">優惠</a>
                     </li>
                     <li>
-                        <a class="ui-btn ui-corner-all  ui-icon-location ui-btn-icon-top" href="Stores.html">門市</a>
+                        <a class="ui-btn ui-corner-all  ui-icon-location ui-btn-icon-top" href="Stores.html" data-ajax="false" >門市</a>
                     </li>
                 </ul>
             </div>
