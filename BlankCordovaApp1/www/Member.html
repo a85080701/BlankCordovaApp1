@@ -19,8 +19,9 @@
 <body>
     <script>
         //登入抓取資料
-        var logined = window.localStorage;
+       
         $(document).on('ready', function () {
+            var logined = window.localStorage;
             alert(logined['logined'])
             if (logined['logined'] == 'true')
             {
@@ -105,7 +106,7 @@
                     <label for="pwd">密碼：</label><input type="password" id="logPwd" value="c8763">
                 </div>
                 <div>
-                    <a href="#" data-role="button" data-inline="true" id="btnLogin">登入</a>
+                    <a  data-role="button" data-inline="true" id="btnLogin">登入</a>
 
                 </div>
             </form>
