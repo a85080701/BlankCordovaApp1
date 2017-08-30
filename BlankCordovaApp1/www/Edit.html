@@ -15,13 +15,65 @@
 </head>
 <body>
     <script>
+        var logined = window.localStorage;
         $(document).on('ready', function () {
-            $("#editok").click(function () {
+                $("#editName").val(logined['name']);
+                $("#editDate").val(logined['date']);
+                if (logined['sex'] == '男') {
+                    $("input[id='editfemale']").attr("checked", "");
+                    $("input[name='sex'][value='男']").attr("checked", "checked");
+                }
+                else {
+                    $("input[id='editmale']").attr("checked", "");
+                    $("input[name='sex'][value='女']").attr("checked", "checked");
 
-                var pwd = $("#editpwd").val()
-                var email = logined.getItem('email');
+                }
+
+                $("#btnEdit").click(function () {
+                    var pwd = $("#editPwd").val();
+                    var name = $("#editName").val();
+                    var date = $("#editDate").val();
+                    var sex = $("input[name=sex]:checked").val();
+                    var email = logined['email'];
+                    var a = {
+                        "mode": "edit",
+                        "login": [
+                                       {
+                                           "pwd": pwd,
+                                           "sex": sex,
+                                           "date": date,
+                                           "name": name,
+                                           "email": email
+                                       }
+
+                        ]
+
+                    }
+                    alert(date);
+                    $.ajax({
+                        url: "http://localhost/Test/mobile.ashx",
+                        type: "POST",
+                        dataType: "json",
+                        contentType: 'application/json; charset=utf-8',
+                        data: JSON.stringify(a),
+                        success: function (data) {
+                            if (data.message == null) {
+                                alert('成功')
+                                logined.setItem('name', data.name);
+                                logined.setItem('sex', data.sex);
+                                logined.setItem('date', data.date);
+                                location.href = 'My.html';
+                            }
+                            else {
+                                alert("密碼錯誤");
+                            }
+
+
+                        },
+                        error: function () { alert('失敗') }
+                    })
+                });
             });
-        });
     </script>
 
     <div data-role="page" id="Edit">
@@ -37,11 +89,11 @@
 
             <div>
                 性別：
-                <label for="male"><input id="editMale" type="radio" name="sex" checked />男</label>
-                <label for="female"><input id="editFemale" type="radio" name="sex" />女</label>
+                <label for="male"><input id="editMale" type="radio" name="sex" value="男" checked />男</label>
+                <label for="female"><input id="editFemale" type="radio" name="sex" value="女" />女</label>
             </div>
             <div>
-                <label for="date">生日：</label><input type="date" id="editDate">
+                <label for="date">生日：</label><input type="date" id="editDate" name="editDate">
             </div>
             <div>
                 <label for="pwd">請輸入密碼：</label><input type="password" id="editPwd">
