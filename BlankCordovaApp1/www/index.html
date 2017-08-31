@@ -35,15 +35,11 @@
     </style>
 </head>
 <body>
- 
-    <!--star index page-->
-    <div data-role="page" id="index">
-        <script>
-
+    <script>       
         $(document).on('ready', function () {
             //start of slick
             var logined = window.localStorage;
-
+          
                 $(".regular").slick({
                     dots: true,
                     infinite: true,
@@ -74,10 +70,12 @@
             }
             //右上點擊時判斷進入會員資訊OR登入葉面
             $("#member").click(function () {
-                    location.href = "Member.html";
+                    location.href = "Member.html";                          
             });
         });
-        </script>      
+    </script>      
+    <!--star index page-->
+    <div data-role="page" id="index">
         <div data-role="header" data-position="fixed">
             <h1>有料餐點</h1>
             <a class="ui-btn ui-corner-all  ui-icon-mail ui-btn-icon-right" href="#Message">訊息</a>
